@@ -29,5 +29,6 @@ const person:TPerson = {
 const person2:TPerson[]=[
     {id: 1,name:"Tu",age:12454,status:true},
     {id: 2,name:"Truong Huyen",age:100000,status:true},
+    {id: 3,name:"Truong Huyen 123",age:100000,status:true},
 ]
 console.log(person2);
