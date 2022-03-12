@@ -12,7 +12,7 @@ function App() {
   const [products, setProducts] = useState<TProduct[]>([{id:1, name:"Hung"}])
   return (
     <div className="App">
-      <ShowInfo name="hung"/>
+      <ShowInfo name="hung ccc"/>
     </div>
   )
 }
