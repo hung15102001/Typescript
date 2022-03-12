@@ -10,7 +10,7 @@ function App() {
 const [products, setProducts] = useState([
   {id: 1, name:"name a"},
   {id: 2, name:"name b"},
-  {id: 3, name:"name c"}
+  
 ])
 
   const removeItem = (id) =>{
