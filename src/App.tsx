@@ -4,18 +4,14 @@ import './App.css';
 import ShowInfo from './component/ShowInfo';
 import type {ProductType} from './types/products';
 import axios from 'axios';
+import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
+import CliLayout from './page/layout/CliLayout';
+import Home from './page/Home';
+import Product from './page/Product';
+import Dashboard from './page/admin/Dashboard';
+import AdminLayout from './page/layout/AdminLayout';
 
-// function App() {
-//   const [info, setInfo] = useState<ProductType>(
-//     {
-//          name:"Hung", age:20
-//     });
-//   return (
-//     <div className="App">
-//       <ShowInfo info={info}/>
-//     </div>
-//   )
-// }
+
 
 function App() {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -37,40 +33,34 @@ function App() {
 
     data && setProducts(products.filter(item => item._id !== data._id));
   }
+
+
   return (
-    <div className="App">
-      {count}  <button onClick={()=> setCount(count + 1)}>Click</button>
-      <br />
-      
-            <table>
-              <thead>
-                  <tr>
-                      <th>#</th>
-                      <th>Title</th>
-                      <th>Author</th>
-                      <th> Function</th>
-                  </tr>
-              </thead>
-              <tbody>
+        <div>
+            <header>
+                <ul>
+                  <li><NavLink to="/">Homepage</NavLink></li>
+                  <li><NavLink to="/products">Productpage</NavLink></li>
+                  <li><NavLink to="/admin">Admin</NavLink></li>
+                </ul>
+            </header>
 
-                {products.map((item, index)=>{
-                    return <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{item.title}</td>
-                        <td>{item.author}</td>
-                        <td>
-                          <button onClick={()=>removeItem(item.id)}>Remove</button>
-                        </td>
-                      </tr>
-                })}
+            <main>
+                <Routes>
+                  <Route path="/" element={<CliLayout />}>
+                      <Route index element={<Home />} />
+                      <Route path="/products" element={<Product />} />
+                  </Route>
 
-              </tbody>
+                  <Route path="admin" element={<AdminLayout />}>
+                      <Route index element={<Navigate to="dashboard" />} />
+                      <Route path="dashboard" element={<Dashboard />} />
+                  </Route>
 
-            </table>
-            
-   
-    </div>
-  )
+                </Routes>
+            </main>
+        </div>
+    )
 
 }
 

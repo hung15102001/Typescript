@@ -1,9 +1,32 @@
 {
   "products": [
     {
-      "id": "1",
-      "title": "demo1",
-      "author": "eqwqwe"
+      "id": 1,
+      "name": "demo1",
+      "age": 20
+    },
+    {
+      "id": 2,
+      "name": "demo2",
+      "age": 20
+    },
+    {
+      "id": 3,
+      "name": "demo3",
+      "age": 20
+    }
+  ],
+  "news":[{
+      "id": 1,
+      "name":"new 1"
+    },
+    {
+      "id": 2,
+      "name":"new 1"
+    },
+    {
+      "id": 3,
+      "name":"new 1"
     }
   ]
 }
