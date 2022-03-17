@@ -1,10 +1,12 @@
 import React from 'react'
+import HeaderCli from '../component/HeaderCli'
 
 type Props = {}
 
 const Product = (props: Props) => {
   return (
-    <div>Product
+    <div>
+        <HeaderCli />
         <main></main>
     </div>
   )

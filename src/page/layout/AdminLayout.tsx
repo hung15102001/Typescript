@@ -5,7 +5,7 @@ type Props = {}
 
 const AdminLayout    = (props: Props) => {
   return (
-    <div>AdminLayout
+    <div>
         <main>
             <Outlet />
         </main>

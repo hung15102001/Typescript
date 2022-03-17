@@ -5,7 +5,7 @@ type Props = {}
 
 const CliLayout = (props: Props) => {
   return (
-    <div>CliLayout
+    <div>
         <main>
             <Outlet />
         </main>

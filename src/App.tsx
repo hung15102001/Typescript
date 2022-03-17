@@ -11,6 +11,7 @@ import Product from './page/Product';
 import Dashboard from './page/admin/Dashboard';
 import AdminLayout from './page/layout/AdminLayout';
 
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 function App() {
@@ -37,14 +38,6 @@ function App() {
 
   return (
         <div>
-            <header>
-                <ul>
-                  <li><NavLink to="/">Homepage</NavLink></li>
-                  <li><NavLink to="/products">Productpage</NavLink></li>
-                  <li><NavLink to="/admin">Admin</NavLink></li>
-                </ul>
-            </header>
-
             <main>
                 <Routes>
                   <Route path="/" element={<CliLayout />}>
