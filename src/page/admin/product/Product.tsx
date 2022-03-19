@@ -1,30 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import { getAll } from '../../api/news';
-import HeaderAmin from '../../component/admin/HeaderAmin'
-import { NewType } from '../../types/news';
 
-type NewProps = {
-  data: NewType[];
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { list, remove } from '../../../api/products';
+import HeaderAmin from '../../../component/admin/HeaderAmin';
+import { ProductType } from '../../../types/products';
+
+
+type ProductProps = {
+   data: ProductType[];
 }
 
-const NewAdmin = (props: NewProps) => {
-  const [news, setNews] = useState<NewType[]>([]);
+const ProductAdmin = (props: ProductProps) => {
+  
+    const [producst, setProducts] = useState<ProductType[]>([]);
 
-  useEffect(()=>{
-    const getNew = async () => {
-      const {data} = await getAll();
-      setNews(data);
-     
-      
-    }
-    getNew();
-  },[])
-  return (
- 
-  <div>
+    useEffect(()=>{
+        const getProduct = async () => {
+            const {data} = await list();
+            
+            
+            setProducts(data);
+        }
+        getProduct();
+    },[])
+
+    const removeItem = async (id: number) => {
+  
+        const {data} = await remove(id);
     
-      <HeaderAmin />
-        <main>
+        data && setProducts(producst.filter(item => item._id !== data._id));
+      }
+    
+
+  return (
+    
+      
+    <div>
+       
+        <HeaderAmin />
         <div className="card mb-4">
             <div className="card-body">
             <table id="datatablesSimple">
@@ -44,9 +57,9 @@ const NewAdmin = (props: NewProps) => {
                                         <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{item.name}</td>
-                                      
+                                        <td>{item.price}</td>
                                         <td>
-                                            {/* {<button onClick={()=> removeItem(item._id)}>Remove</button>} */}
+                                            {<button onClick={()=> removeItem(item._id)}>Remove</button>}
                                         </td>
                                         </tr> 
                                         )
@@ -56,10 +69,8 @@ const NewAdmin = (props: NewProps) => {
                  </table>
             </div>
         </div>
-  
-        </main>
     </div>
   )
 }
 
-export default NewAdmin
+export default ProductAdmin

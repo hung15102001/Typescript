@@ -3,30 +3,36 @@
     {
       "id": 1,
       "name": "demo1",
-      "age": 20
+      "price": 20
     },
     {
       "id": 2,
       "name": "demo2",
-      "age": 20
+      "price": 20
     },
     {
       "id": 3,
       "name": "demo3",
-      "age": 20
+      "price": 20
+    },
+    {
+      "name": "qưeqwe",
+      "price": "12",
+      "id": 4
     }
   ],
-  "news":[{
+  "news": [
+    {
       "id": 1,
-      "name":"new 1"
+      "name": "new 1"
     },
     {
       "id": 2,
-      "name":"new 1"
+      "name": "new 1"
     },
     {
       "id": 3,
-      "name":"new 1"
+      "name": "new 1"
     }
   ]
 }
