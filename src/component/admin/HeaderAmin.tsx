@@ -43,13 +43,13 @@ const HeaderAmin = (props: Props) => {
               Dashboard
             </NavLink>
             <div className="sb-sidenav-menu-heading">Admin Page</div>
-            <NavLink className="nav-link collapsed" to="/news" data-bs-target="#collapseLayouts" aria-expanded="false" >
+            <NavLink className="nav-link collapsed" to="/admin/news"  >
                   News
             </NavLink >
-            <NavLink className="nav-link collapsed" to="/admin/products" data-bs-target="#collapseLayouts" aria-expanded="false" >
+            <NavLink className="nav-link collapsed" to="/admin/products" >
                   Products
             </NavLink >
-            <NavLink className="nav-link collapsed" to="/admin/products/add" data-bs-target="#collapseLayouts" aria-expanded="false" >
+            <NavLink className="nav-link collapsed" to="/admin/products/add" >
                   Add Pro
             </NavLink >
          

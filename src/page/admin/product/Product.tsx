@@ -24,11 +24,14 @@ const ProductAdmin = (props: ProductProps) => {
         getProduct();
     },[])
 
+
+    
+
     const removeItem = async (id: number) => {
   
         const {data} = await remove(id);
     
-        data && setProducts(producst.filter(item => item._id !== data._id));
+        data && setProducts(producst.filter(item => item.id !== data.id));
       }
     
 
@@ -59,7 +62,7 @@ const ProductAdmin = (props: ProductProps) => {
                                         <td>{item.name}</td>
                                         <td>{item.price}</td>
                                         <td>
-                                            {<button onClick={()=> removeItem(item._id)}>Remove</button>}
+                                            {<button onClick={()=> removeItem(item.id)}>Remove</button>}
                                         </td>
                                         </tr> 
                                         )

@@ -29,7 +29,8 @@ const Add = (props: AddProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
         <label>Name</label>
-        <input type="text" {...register('name')}/>
+        <input type="text" {...register('name', {required: true})}/>
+        {errors.name  && errors.name.type === "required" && <span>Kh được bỏ trống</span>}
         <label>Price</label>
         <input type="number" {...register('price')}/>
         <button>Add</button>

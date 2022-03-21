@@ -7,7 +7,9 @@ const Product = (props: Props) => {
   return (
     <div>
         <HeaderCli />
-        <main></main>
+        <main>
+            
+        </main>
     </div>
   )
 }

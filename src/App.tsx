@@ -10,20 +10,21 @@ import Product from './page/Product';
 import Dashboard from './page/admin/Dashboard';
 import AdminLayout from './page/layout/AdminLayout';
 import "bootstrap/dist/css/bootstrap.min.css";
-import New from './page/admin/New';
-import NewAdmin from './page/admin/New';
+import New from './page/admin/news/New';
+import NewAdmin from './page/admin/news/New';
 import { ProductType } from './types/products';
 import Login from './page/authen/Login';
 import Signup from './page/authen/Signup';
 import Add from './page/admin/product/Add';
 import { add, list } from './api/products';
 import ProductAdmin from './page/admin/product/Product';
+import { NewType } from './types/news';
 
 
 function App() {
  
   const [products, setProducts] = useState<ProductType[]>([])
-
+  const [news, setNews] = useState<NewType[]>([])
   useEffect(() => { // 3
     const getProducts = async () => {
        const { data } = await list();
@@ -34,6 +35,9 @@ function App() {
     getProducts();
  },[])
 
+ useEffect(()=>{
+   
+ })
   const onHanderAdd = async (product: ProductType)=>{
      
       
@@ -56,12 +60,12 @@ function App() {
                   <Route path="admin" element={<AdminLayout />}>
                       <Route index element={<Navigate to="dashboard" />} />
                       <Route path="dashboard" element={<Dashboard />} />
-                       {/* <Route path="news" element={<NewAdmin />}/>  */}
-                       <Route path="products" element={<ProductAdmin data={products}/>}>
+                       <Route path="news" element={<NewAdmin data={news}/>}/> 
+                       <Route path="products"  element={<ProductAdmin data={products}/>}/> 
                          
-                        <Route path="/add" element={<Add onAdd={onHanderAdd} />}/> 
-                      </Route>
-                        
+                      
+                      <Route path="/admin/products/add" element={<Add onAdd={onHanderAdd} />}/> 
+                  
 
                   </Route>
 

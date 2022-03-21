@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { getAll } from '../../api/news';
-import HeaderAmin from '../../component/admin/HeaderAmin'
-import { NewType } from '../../types/news';
+import { getAll } from '../../../api/news';
+import HeaderAmin from '../../../component/admin/HeaderAmin'
+import { NewType } from '../../../types/news';
 
 type NewProps = {
   data: NewType[];
