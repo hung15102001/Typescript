@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAll } from '../../../api/news';
+// import { list } from '../../../api/products';
 import HeaderAmin from '../../../component/admin/HeaderAmin'
 import { NewType } from '../../../types/news';
 
@@ -11,11 +12,11 @@ const NewAdmin = (props: NewProps) => {
   const [news, setNews] = useState<NewType[]>([]);
 
   useEffect(()=>{
+    
     const getNew = async () => {
       const {data} = await getAll();
       setNews(data);
-     
-      
+  
     }
     getNew();
   },[])
@@ -24,7 +25,7 @@ const NewAdmin = (props: NewProps) => {
   <div>
     
       <HeaderAmin />
-        <main>
+ 
         <div className="card mb-4">
             <div className="card-body">
             <table id="datatablesSimple">
@@ -32,7 +33,7 @@ const NewAdmin = (props: NewProps) => {
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th> 
-                                            <th>Price</th>
+                                        
                                             <th >function</th>
                                             <th></th>
                                         </tr>
@@ -57,7 +58,7 @@ const NewAdmin = (props: NewProps) => {
             </div>
         </div>
   
-        </main>
+       
     </div>
   )
 }

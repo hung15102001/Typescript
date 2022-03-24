@@ -2,11 +2,33 @@
   "products": [
     {
       "id": 3,
-      "name": "demo3",
-      "price": 20
+      "name": "demo313123312",
+      "price": 20,
+      "quantity": 100,
+      "image": "1.jpg",
+      "description": "demo3 description",
+      "categoryId": 1
     },
     {
-      "name": "qưeqwe",
+      "id": 1,
+      "name": "demo331213213132",
+      "price": 20,
+      "quantity": 100,
+      "image": "1.jpg",
+      "description": "demo3 description",
+      "categoryId": 1
+    },
+    {
+      "id": 2,
+      "name": "demo3231",
+      "price": 20,
+      "quantity": 100,
+      "image": "1.jpg",
+      "description": "demo3 description",
+      "categoryId": 1
+    },
+    {
+      "name": "afafdadfaf",
       "price": "12",
       "id": 4
     }

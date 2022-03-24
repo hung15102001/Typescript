@@ -1,79 +1,71 @@
-
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { list, remove } from '../../../api/products';
-import HeaderAmin from '../../../component/admin/HeaderAmin';
-import { ProductType } from '../../../types/products';
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { list, remove } from "../../../api/products";
+import HeaderAmin from "../../../component/admin/HeaderAmin";
+import { ProductType } from "../../../types/products";
+import { Button, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 type ProductProps = {
-   data: ProductType[];
-}
+  data: ProductType[];
+  onRemove: (id: number) => void;
+};
 
 const ProductAdmin = (props: ProductProps) => {
-  
-    const [producst, setProducts] = useState<ProductType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
+   
+  // useEffect(() => {
+  //   const getProduct = async () => {
+  //     const { data } = await list();
+  //     setProducts(data);
+  //   };
+  //   getProduct();
+  // }, []);
 
-    useEffect(()=>{
-        const getProduct = async () => {
-            const {data} = await list();
-            
-            
-            setProducts(data);
-        }
-        getProduct();
-    },[])
-
-
-    
-
-    const removeItem = async (id: number) => {
-  
-        const {data} = await remove(id);
-    
-        data && setProducts(producst.filter(item => item.id !== data.id));
-      }
-    
 
   return (
-    
-      
     <div>
-       
-        <HeaderAmin />
-        <div className="card mb-4">
-            <div className="card-body">
-            <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Name</th> 
-                                            <th>Price</th>
-                                            <th >function</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-                                    {props.data && props.data.map((item, index) => {
-                                        return (
-                                        <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.price}</td>
-                                        <td>
-                                            {<button onClick={()=> removeItem(item.id)}>Remove</button>}
-                                        </td>
-                                        </tr> 
-                                        )
-                                    })}
-                                    
-                         </tbody>
-                 </table>
-            </div>
-        </div>
+      <HeaderAmin />
+   
+        <Link className="font-bold m-2 btn btn-primary" to={`/admin/products/add`}>Add new</Link>
+      
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.data?.map((product, index) => {
+            return <tr key={index}>
+                <td>{index+1}</td>
+              <td>{product.name}</td>
+              <td>{product.price}</td>
+              <td>{product.quantity}</td>
+              <td>{product.image}</td>
+              <td>{product.description}</td>
+              <td>{product.categoryId}</td>
+              
+              <td>
+                  <Button size="sm" variant="danger">Remove</Button>
+                  <Button size="sm" className="m-2" variant="warning">
+                    <Link to={`/admin/products/${product.id}/edit`}>Update</Link>
+                  </Button>
+                  <Button size="sm"  variant="primary">View</Button>
+              </td>
+            </tr>;
+          })}
+        </tbody>
+      </Table>
     </div>
-  )
-}
+  );
+};
 
-export default ProductAdmin
+export default ProductAdmin;

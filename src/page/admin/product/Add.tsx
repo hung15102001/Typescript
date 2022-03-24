@@ -5,26 +5,32 @@ import { ProductType } from '../../../types/products'
 import {useNavigate, useNavigationType} from 'react-router-dom';
 
 type AddProps = {
-    onAdd:(product: ProductType) => void
+    onAddPro:(product: ProductType) => void
 }
 
 type FormV = {
-    name: string,
-    price: number
+    name: String,
+    price: number,
+    quantity: number,
+    image:String,
+    description:String,
+    category:number,
 }
 
 
 
 
 const Add = (props: AddProps) => {
+    
     const {register, handleSubmit,  formState: { errors }} = useForm<FormV>();
     const navigate = useNavigate();
 
     const onSubmit : SubmitHandler<FormV> = (data)=>{
-        props.onAdd(data);
+        props.onAddPro(data);
         navigate('/admin/products')
     };
 
+  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
