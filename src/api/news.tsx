@@ -1,3 +1,4 @@
+import { ProductType } from "../types/products";
 import instance from "./instance";
 
 export const getAll = () => {
@@ -10,7 +11,7 @@ export const remove = (id:number) => {
     return instance.delete(url);
 }
 
-export const add = (news) => {
+export const add = (news:ProductType) => {
     const url = `/news`;
     return instance.put(url, news);
 }

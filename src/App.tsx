@@ -24,34 +24,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Update from "./page/admin/product/Update";
 
 function App() {
-  const [products, setProducts] = useState<ProductType[]>([]);
 
-  const [news, setNews] = useState<NewType[]>([]);
 
-  useEffect(() => {
-    const getNews = async () => {
-      const { data } = await getAll();
-      setNews(data);
-    };
-    getNews();
-  }, []);
+  // const onHanderAddPro = async (product: ProductType) => {
+  //   const { data } = await add(product);
 
-  const onHanderAddPro = async (product: ProductType) => {
-    const { data } = await add(product);
+  //   setProducts([...products, data]);
+  // };
 
-    setProducts([...products, data]);
-  };
-
- useEffect(()=>{
-   const getPro = async () => {
-     const {data} = await list();
-
-     setProducts(data)
-   }
-   getPro();
- },[])
-
- 
   return (
     <div>
       <main>
@@ -66,13 +46,14 @@ function App() {
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="products" />} />
 
-            <Route path="news" element={<NewAdmin data={news} />} >
+            <Route path="news" >
+                <Route index element={<NewAdmin />}/>
                  <Route path="add" element={<AddNew />} />
             </Route>
           
             <Route path="products">
-              <Route index element={<ProductAdmin data={products} />} />
-              <Route path="add" element={<Add onAddPro={onHanderAddPro} />} />
+              <Route index element={<ProductAdmin />} />
+              <Route path="add" element={<Add  />} />
               <Route path=":id/edit" element={<Update />} />
             </Route>
           </Route>

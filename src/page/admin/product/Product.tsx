@@ -14,13 +14,18 @@ type ProductProps = {
 const ProductAdmin = (props: ProductProps) => {
   const [products, setProducts] = useState<ProductType[]>([]);
    
-  // useEffect(() => {
-  //   const getProduct = async () => {
-  //     const { data } = await list();
-  //     setProducts(data);
-  //   };
-  //   getProduct();
-  // }, []);
+  useEffect(() => {
+    const getProduct = async () => {
+      const { data } = await list();
+      setProducts(data);
+    };
+    getProduct();
+  }, []);
+
+  const onRemove =  (id: number) => {
+        remove(id);
+    setProducts(products.filter(item => item.id !== id));
+  }
 
 
   return (
@@ -43,7 +48,7 @@ const ProductAdmin = (props: ProductProps) => {
           </tr>
         </thead>
         <tbody>
-          {props.data?.map((product, index) => {
+          {products?.map((product, index) => {
             return <tr key={index}>
                 <td>{index+1}</td>
               <td>{product.name}</td>
@@ -54,7 +59,7 @@ const ProductAdmin = (props: ProductProps) => {
               <td>{product.categoryId}</td>
               
               <td>
-                  <Button size="sm" variant="danger">Remove</Button>
+                  <Button size="sm" variant="danger"  onClick={()=>onRemove(product.id)}>Remove</Button>
                   <Button size="sm" className="m-2" variant="warning">
                     <Link to={`/admin/products/${product.id}/edit`}>Update</Link>
                   </Button>

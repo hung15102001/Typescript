@@ -1,50 +1,48 @@
 {
   "products": [
     {
-      "id": 3,
-      "name": "demo313123312",
-      "price": 20,
-      "quantity": 100,
-      "image": "1.jpg",
-      "description": "demo3 description",
-      "categoryId": 1
-    },
-    {
       "id": 1,
-      "name": "demo331213213132",
-      "price": 20,
-      "quantity": 100,
+      "name": "demo",
+      "price": 100,
       "image": "1.jpg",
-      "description": "demo3 description",
-      "categoryId": 1
+      "description": "demo12331132",
+      "categoryId": "1"
     },
     {
-      "id": 2,
-      "name": "demo3231",
-      "price": 20,
-      "quantity": 100,
+      "id": 4,
+      "name": "demo",
+      "price": 100,
       "image": "1.jpg",
-      "description": "demo3 description",
-      "categoryId": 1
+      "description": "demo12331132",
+      "categoryId": "1"
     },
     {
-      "name": "afafdadfaf",
-      "price": "12",
-      "id": 4
+      "id": 3,
+      "name": "demo",
+      "price": 100,
+      "image": "1.jpg",
+      "description": "demo12331132",
+      "categoryId": "1"
     }
   ],
   "news": [
     {
       "id": 1,
-      "name": "new 1"
+      "name": "new 1",
+      "img": "1.jpg",
+      "description": "demo"
     },
     {
       "id": 2,
-      "name": "new 1"
+      "name": "new 1",
+      "img": "1.jpg",
+      "description": "demo"
     },
     {
       "id": 3,
-      "name": "new 1"
+      "name": "new 1",
+      "img": "1.jpg",
+      "description": "demo"
     }
   ]
 }
