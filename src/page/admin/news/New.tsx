@@ -27,7 +27,7 @@ const NewAdmin = (props: NewProps) => {
   return (
  
   <div>
-    
+    <Link to='/admin/news/add' className="btn btn-primary m-2">Add News</Link>
    <Table  striped bordered hover>
    <thead>
           <tr>

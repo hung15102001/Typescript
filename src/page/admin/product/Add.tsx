@@ -1,47 +1,89 @@
-import React, { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { add } from '../../../api/products'
-import { ProductType } from '../../../types/products'
-import {useNavigate, useNavigationType} from 'react-router-dom';
-
+import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { add } from "../../../api/products";
+import { ProductType } from "../../../types/products";
+import { Link, useNavigate, useNavigationType } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 type AddProps = {
-    onAddPro:(product: ProductType) => void
-}
+ 
+};
 
 type FormV = {
-    name: String,
-    price: number,
-    quantity: number,
-    image:String,
-    description:String,
-    category:number,
-}
-
-
-
+  name: String
+  price: number
+  quantity: number
+  image: String
+  description: String
+  category: String
+};
 
 const Add = (props: AddProps) => {
-    
-    const {register, handleSubmit,  formState: { errors }} = useForm<FormV>();
-    const navigate = useNavigate();
+    const [products, setProducts] = useState<ProductType[]>([])
 
-    const onSubmit : SubmitHandler<FormV> = (data)=>{
-        props.onAddPro(data);
-        navigate('/admin/products')
-    };
+    
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormV>();
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<FormV> = async (product)=> {
+   console.log(product);
+      const {data} = await add(product);
+      setProducts([...products, data]);
+      navigate('/admin/products');
+}
+
 
   
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Name</label>
-        <input type="text" {...register('name', {required: true})}/>
-        {errors.name  && errors.name.type === "required" && <span>Kh được bỏ trống</span>}
-        <label>Price</label>
-        <input type="number" {...register('price')}/>
-        <button>Add</button>
-    </form>
-  )
-}
 
-export default Add
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form.Group className="mb-3" >
+        <Form.Label>Name</Form.Label>
+    <Form.Control type="text" placeholder="Enter email" {...register('name', {required: true})}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+        <Form.Label>Price</Form.Label>
+        <Form.Control type="number" placeholder="Price" {...register('price', {required: true})}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+        <Form.Label>Quantity</Form.Label>
+        <Form.Control type="number" placeholder="Quantity" {...register('quantity', {required: true})}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+        <Form.Label>Description</Form.Label>
+        <Form.Control type="text" placeholder="Description" {...register('description', {required: true})}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+        <Form.Label>Img</Form.Label>
+        <Form.Control type="text" placeholder="Description" {...register('image', {required: true})}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+        <Form.Label>Category</Form.Label>
+        <Form.Control as="select" {...register('categoryId')}>
+          <option value='1'>1</option>
+
+        </Form.Control>
+  
+       
+      </Form.Group>
+      <Button  variant="primary" type="submit">
+        Submit
+      </Button>
+
+      <Link className="btn btn-primary m-2" to={"/admin/products"}>
+        Back
+      </Link>
+    </Form>
+  );
+};
+
+export default Add;

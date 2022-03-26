@@ -16,11 +16,11 @@ export const add = (products:ProductType) => {
     return instance.post(url, products);
 }
 
-export const read = (id:number)=>{
-    const url = `/products/`+id;
+export const view = (id:number)=>{
+    const url = `/products/${id}`;
     return instance.get(url)
 }
 export const update = (products:ProductType) => {
-    const url = `/products`;
+    const url = `/products/${products.id}`;
     return instance.put(url, products)
 }

@@ -15,25 +15,23 @@ import { ProductType } from "./types/products";
 import Login from "./page/authen/Login";
 import Signup from "./page/authen/Signup";
 import Add from "./page/admin/product/Add";
-import { add, list, remove } from "./api/products";
+import { list, remove } from "./api/products";
 import ProductAdmin from "./page/admin/product/Product";
 import { NewType } from "./types/news";
 import AddNew from "./page/admin/news/Add";
-import { getAll } from "./api/news";
+import UpdateNew from "./page/admin/news/Update"
 import "bootstrap/dist/css/bootstrap.min.css";
-import Update from "./page/admin/product/Update";
+import UpdatePro from "./page/admin/product/Update";
+import { add } from "./api/news";
 
 function App() {
 
 
-  // const onHanderAddPro = async (product: ProductType) => {
-  //   const { data } = await add(product);
-
-  //   setProducts([...products, data]);
-  // };
 
   return (
     <div>
+
+
       <main>
         <Routes>
           <Route path="/" element={<CliLayout />}>
@@ -48,13 +46,14 @@ function App() {
 
             <Route path="news" >
                 <Route index element={<NewAdmin />}/>
-                 <Route path="add" element={<AddNew />} />
+                 <Route path="add" element={<AddNew/>} />
+                 <Route path=":id/edit" element={<UpdateNew />} />
             </Route>
           
             <Route path="products">
               <Route index element={<ProductAdmin />} />
-              <Route path="add" element={<Add  />} />
-              <Route path=":id/edit" element={<Update />} />
+              <Route path="add" element={<Add />} />
+              <Route path=":id/edit" element={<UpdatePro />} />
             </Route>
           </Route>
         </Routes>

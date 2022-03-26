@@ -1,4 +1,5 @@
-import { ProductType } from "../types/products";
+import { NewType } from "../types/news";
+// import { ProductType } from "../types/products";
 import instance from "./instance";
 
 export const getAll = () => {
@@ -11,7 +12,15 @@ export const remove = (id:number) => {
     return instance.delete(url);
 }
 
-export const add = (news:ProductType) => {
+export const add = (demo:NewType) => {
     const url = `/news`;
-    return instance.put(url, news);
+    return instance.post(url, demo);
+}
+export const view = (id:number) =>{
+    const url = `/news/${id}`;
+    return instance.get(url)
+}
+export const update = (demo:NewType) => {
+    const url = `/news/${demo.id}`
+    return instance.put(url, demo)
 }
