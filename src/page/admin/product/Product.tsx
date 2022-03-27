@@ -67,9 +67,9 @@ const ProductAdmin = (props: ProductProps) => {
               <td>
                   <Button size="sm" variant="danger"  onClick={()=>onRemove(product.id)}>Remove</Button>
                   <Button size="sm" className="m-2" variant="warning">
-                    <Link to={`/admin/products/${product.id}/edit`}>Update</Link>
+                    <Link className="text-white text-decoration-none" to={`/admin/products/${product.id}/edit`}>Update</Link>
                   </Button>
-                  <Button size="sm"  variant="primary" onClick={() =>{handleViewShow(setRowData(product.id))}}>View</Button>
+                  <Button size="sm"  variant="secondary" onClick={() =>{handleViewShow(setRowData(product.id))}}>View</Button>
               </td>
             </tr>;
           })}
