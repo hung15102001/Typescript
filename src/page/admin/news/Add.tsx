@@ -5,6 +5,7 @@ import {NewType} from '../../../types/news'
 import {Form, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import { add } from '../../../api/news';
+import HeaderAmin from '../../../component/admin/HeaderAmin';
 type Props = {
 }
 
@@ -28,7 +29,8 @@ const AddNew = (props: Props) => {
       navigate('/admin/news')
   }
   return (
-  
+        <div>
+          <HeaderAmin/>
        <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
@@ -47,7 +49,7 @@ const AddNew = (props: Props) => {
         <Button variant="primary" type="submit">Add</Button>
         <Link className="btn btn-primary m-2" to={"/admin/news"}>Back</Link>
       </Form>
-  
+      </div>
   )
 }
 

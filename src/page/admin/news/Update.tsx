@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import {SubmitHandler, useForm} from 'react-hook-form'
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import { update, view } from "../../../api/news";
+import HeaderAmin from "../../../component/admin/HeaderAmin";
 import {NewType} from '../../../types/news'
 type Props = {};
 
@@ -42,6 +43,7 @@ const Update = (props: Props) => {
     }
   return (
     <div>
+      <HeaderAmin/>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>

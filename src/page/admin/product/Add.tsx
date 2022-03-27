@@ -4,6 +4,7 @@ import { add } from "../../../api/products";
 import { ProductType } from "../../../types/products";
 import { Link, useNavigate, useNavigationType } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
+import HeaderAmin from "../../../component/admin/HeaderAmin";
 type AddProps = {
  
 };
@@ -40,6 +41,8 @@ const Add = (props: AddProps) => {
 
 
   return (
+    <div>
+    <HeaderAmin/>
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Group className="mb-3" >
         <Form.Label>Name</Form.Label>
@@ -83,6 +86,7 @@ const Add = (props: AddProps) => {
         Back
       </Link>
     </Form>
+    </div>
   );
 };
 

@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import {SubmitHandler, useForm} from "react-hook-form"
 import { ProductType } from "../../../types/products";
 import { update, view } from "../../../api/products";
+import HeaderAmin from "../../../component/admin/HeaderAmin";
 type Props = {};
 
 type FormUp = {
@@ -39,38 +40,48 @@ const Update = (props: Props) => {
       navigate('/admin/products');
   }
   return (
+   
     <div>
+       <HeaderAmin />
      <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Group className="mb-3" >
         <Form.Label>Name</Form.Label>
-    <Form.Control type="text" placeholder="Enter email" {...register('name', {required: true})}/>
+      <Form.Control type="text" placeholder="Enter Name" {...register('name', {required: true})}/>
+      {errors.name && errors.name.type === "required" && <span>Không được bỏ trống</span>}
       </Form.Group>
 
       <Form.Group className="mb-3" >
         <Form.Label>Price</Form.Label>
         <Form.Control type="number" placeholder="Price" {...register('price', {required: true})}/>
+      {errors.price && errors.price.type === "required" && <span>Không được bỏ trống</span>}
+
       </Form.Group>
 
       <Form.Group className="mb-3" >
         <Form.Label>Quantity</Form.Label>
         <Form.Control type="number" placeholder="Quantity" {...register('quantity', {required: true})}/>
+      {errors.quantity && errors.quantity.type === "required" && <span>Không được bỏ trống</span>}
+
       </Form.Group>
 
       <Form.Group className="mb-3" >
         <Form.Label>Description</Form.Label>
         <Form.Control type="text" placeholder="Description" {...register('description', {required: true})}/>
+      {errors.description && errors.description.type === "required" && <span>Không được bỏ trống</span>}
+
       </Form.Group>
 
       <Form.Group className="mb-3" >
         <Form.Label>Img</Form.Label>
-        <Form.Control type="text" placeholder="Description" {...register('image', {required: true})}/>
+        <Form.Control type="text" placeholder="Img" {...register('image', {required: true})}/>
       </Form.Group>
 
       <Form.Group className="mb-3" >
         <Form.Label>Category</Form.Label>
         <Form.Control as="select" {...register('categoryId')}>
           <option value='1'>1</option>
-
+          <option value='2'>2</option>
+          <option value='3'>3</option>
         </Form.Control>
   
        

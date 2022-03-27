@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAll } from '../../../api/news';
+import { getAll, remove } from '../../../api/news';
 // import { list } from '../../../api/products';
 import HeaderAmin from '../../../component/admin/HeaderAmin'
 import { NewType } from '../../../types/news';
@@ -23,10 +23,18 @@ const NewAdmin = (props: NewProps) => {
     getNew();
   },[])
 
+  const onRemove =(id:number) => {
+
+    remove(id)
+
+    setNews(news.filter(item => item.id !== id));
+  }
+
  
   return (
  
   <div>
+    <HeaderAmin/>
     <Link to='/admin/news/add' className="btn btn-primary m-2">Add News</Link>
    <Table  striped bordered hover>
    <thead>
@@ -47,7 +55,7 @@ const NewAdmin = (props: NewProps) => {
               <td>{item.description}</td>
              
               <td>
-                  <Button size="sm" variant="danger" >Remove</Button>
+                  <Button size="sm" variant="danger" onClick={()=>onRemove(item.id)} >Remove</Button>
                   <Button size="sm" className="m-2" variant="warning">
                     <Link to={`/admin/news/${item.id}/edit`}>Update</Link>
                   </Button>

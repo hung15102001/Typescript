@@ -37,13 +37,13 @@
       "id": 9
     },
     {
-      "name": "dmeo1",
-      "price": "21",
-      "quantity": "123",
-      "description": "123",
-      "image": "123",
+      "name": "Demo",
+      "price": "123",
+      "quantity": "321",
+      "description": "qweweeqweweq",
+      "image": "1.jpg",
       "categoryId": "1",
-      "id": 10
+      "id": 11
     }
   ],
   "news": [
@@ -54,46 +54,10 @@
       "description": "demo"
     },
     {
-      "id": 2,
-      "name": "new 1",
-      "img": "1.jpg",
-      "description": "demo"
-    },
-    {
-      "id": 3,
-      "name": "new 1",
-      "img": "1.jpg",
-      "description": "demo"
-    },
-    {
-      "name": "rewrrweerw",
-      "id": 4,
-      "img": "2.png",
-      "description": "123123232"
-    },
-    {
       "name": "dsadsads",
-      "id": 5,
-      "img": "2.jpg",
-      "description": "ewqewqewqewqq"
-    },
-    {
-      "name": "đâsadsd",
-      "img": "2.jpg",
-      "description": "ewqewqqewqwe",
-      "id": 6
-    },
-    {
-      "name": "đâsadsd",
-      "img": "2.jpg",
-      "description": "ewqewqqewqwe",
-      "id": 7
-    },
-    {
-      "name": "demo",
-      "img": "2.png",
-      "description": "qêwqeweq",
-      "id": 8
+      "img": "1.jpg",
+      "description": "qewwqeeqwewq",
+      "id": 3
     }
   ]
 }
