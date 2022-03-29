@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { list, remove } from "../../../api/products";
+import { list, remove, view } from "../../../api/products";
 import HeaderAmin from "../../../component/admin/HeaderAmin";
 import { ProductType } from "../../../types/products";
 import { Button, Modal, Table, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 type ProductProps = {
   data: ProductType[];
@@ -31,6 +31,15 @@ const ProductAdmin = (props: ProductProps) => {
   const onRemove =  (id: number) => {
         remove(id);
     setProducts(products.filter(item => item.id !== id));
+  }
+
+  const {id} = useParams()
+
+  const getDetail = async () =>{
+      const {data} = await view(id);
+      console.log(data);
+      
+      setRowData(data)
   }
 
 
@@ -69,7 +78,7 @@ const ProductAdmin = (props: ProductProps) => {
                   <Button size="sm" className="m-2" variant="warning">
                     <Link className="text-white text-decoration-none" to={`/admin/products/${product.id}/edit`}>Update</Link>
                   </Button>
-                  <Button size="sm"  variant="secondary" onClick={() =>{handleViewShow(setRowData(product.id))}}>View</Button>
+                  <Button size="sm"  variant="secondary" onClick={() =>{handleViewShow(getDetail(product.id))}}>View</Button>
               </td>
             </tr>;
           })}
@@ -92,8 +101,8 @@ const ProductAdmin = (props: ProductProps) => {
                   <div>
                       <Form.Group className="mb-3">
                           <Form.Label>Name</Form.Label>
-                          <Form.Control className="name" value="demo" readOnly>
-
+                          <Form.Control className="name" value={"demo"} readOnly>
+                          
                           </Form.Control>
                         
                       </Form.Group>

@@ -59,5 +59,19 @@
       "description": "qewwqeeqwewq",
       "id": 3
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "demo",
+      "email": "demo@gmail.com",
+      "password": "123"
+    },
+    {
+      "email": "cornyhung@gmail.com",
+      "username": "hungns",
+      "password": "123",
+      "id": 2
+    }
   ]
 }
