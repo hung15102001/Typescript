@@ -5,6 +5,7 @@ import HeaderAmin from '../../../component/admin/HeaderAmin'
 import { NewType } from '../../../types/news';
 import {Table, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Layout, Breadcrumb } from 'antd';
 
 type NewProps = {
   data: NewType[];
@@ -12,7 +13,7 @@ type NewProps = {
 
 const NewAdmin = (props: NewProps) => {
   const [news, setNews] = useState<NewType[]>([]);
-
+  const {Content} = Layout
   useEffect(()=>{
     
     const getNew = async () => {
@@ -30,11 +31,17 @@ const NewAdmin = (props: NewProps) => {
     setNews(news.filter(item => item._id !== _id));
   }
 
- 
+   
   return (
  
   <div>
-    <HeaderAmin/>
+      <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb.Item>Home</Breadcrumb.Item>
+        <Breadcrumb.Item>List</Breadcrumb.Item>
+        <Breadcrumb.Item>App</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
     <Link to='/admin/news/add' className="btn btn-primary m-2">Add News</Link>
    <Table  striped bordered hover>
    <thead>
@@ -68,7 +75,8 @@ const NewAdmin = (props: NewProps) => {
  
    
   
-       
+    </div>
+    </Content>
     </div>
   )
 }

@@ -1,24 +1,39 @@
 import React from 'react'
-import { NavLink, Outlet , Link} from 'react-router-dom'
-import {Navbar, Container, Nav} from 'react-bootstrap';
+import { Layout, Menu} from 'antd';
+import FooterAdmin from './FooterAdmin';
+import { Link } from 'react-router-dom';
+
+
 type Props = {}
+
+const { Header } = Layout;
+
+
+
 
 const HeaderAmin = (props: Props) => {
   return (
-      <div>
-        <Navbar bg="dark" variant="dark">
-    <Container>
-    <Navbar.Brand href="#home">Administrator</Navbar.Brand>
-    <Nav className="me-auto">
-      <Link className="text-decoration-none mx-2 text-white" to={"#home"}>Home</Link>
-      <Link className="text-decoration-none mx-2 text-white" to={"/admin/products"}>Products</Link>
-      <Link className="text-decoration-none mx-2 text-white" to={"/admin/news"}>News</Link>
-    </Nav>
-    </Container>
-  </Navbar>
-      </div>
-       
+    <Layout>
+    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+      <div className="logo" />
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['3']}>
+        <Menu.Item key="1">
+            <Link to={'/admin/products'}>Products</Link>
+        </Menu.Item>
+        <Menu.Item key="2">
+            <Link to={'/admin/news'}>News</Link>
+        </Menu.Item>
+        <Menu.Item key="3">
+            <Link to={'/admin/users'}>Users</Link>
+        </Menu.Item>
+      </Menu>
+    </Header>
+      
+
+  </Layout>
+
   )
-}
+};
+
 
 export default HeaderAmin

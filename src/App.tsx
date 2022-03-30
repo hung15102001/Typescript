@@ -24,7 +24,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import UpdatePro from "./page/admin/product/Update";
 import { add } from "./api/news";
 import PrivateRouter from "./component/authen/PrivateRouter";
-
+import 'antd/dist/antd.css';
+import User from "./page/admin/users/User";
+import AddUser from './page/admin/users/Add'
+import EditUser from "./page/admin/users/Edit";
 function App() {
 
 
@@ -46,7 +49,7 @@ function App() {
             <Route index element={<Navigate to="products" />} />
 
             <Route path="news" >
-                <Route index element={ <NewAdmin />}/>
+                <Route index element={<NewAdmin />}/>
                  <Route path="add" element={<AddNew/>} />
                  <Route path=":id/edit" element={<UpdateNew />} />
             </Route>
@@ -55,6 +58,12 @@ function App() {
               <Route index element={<ProductAdmin />} />
               <Route path="add" element={<Add />} />
               <Route path=":id/edit" element={<UpdatePro />} />
+            </Route>
+
+            <Route path="users">
+                <Route index element={<User />} />
+                <Route path="add" element={<AddUser />}/>
+                <Route path=":id/edit" element={<EditUser />}
             </Route>
           </Route>
         </Routes>

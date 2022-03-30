@@ -5,7 +5,7 @@ import HeaderAmin from "../../../component/admin/HeaderAmin";
 import { ProductType } from "../../../types/products";
 import { Button, Modal, Table, Form } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-
+import { Layout, Menu, Breadcrumb } from 'antd';
 type ProductProps = {
   data: ProductType[];
   onRemove: (id: number) => void;
@@ -18,7 +18,7 @@ const ProductAdmin = (props: ProductProps) => {
   const [viewShow, setViewShow] = useState(false);
   const handleViewShow =  ()=> {setViewShow (true)};
   const hanleViewClose = ()=>{setViewShow (false)}
-
+const {Content} = Layout
 
   useEffect(() => {
     const getProduct = async () => {
@@ -45,9 +45,14 @@ const ProductAdmin = (props: ProductProps) => {
 
   return (
     <div>
-      <HeaderAmin />
-   
-        <Link className="font-bold m-2 btn btn-primary" to={`/admin/products/add`}>Add new</Link>
+        <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb.Item>Home</Breadcrumb.Item>
+        <Breadcrumb.Item>List</Breadcrumb.Item>
+        <Breadcrumb.Item>App</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+      <Link className="font-bold m-2 btn btn-primary" to={`/admin/products/add`}>Add new</Link>
       
       <Table striped bordered hover>
         <thead>
@@ -150,6 +155,11 @@ const ProductAdmin = (props: ProductProps) => {
             
         </Modal>
       </div>
+      </div>
+    </Content>
+   
+   
+       
     </div>
   );
 };
