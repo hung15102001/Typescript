@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HeaderCli from '../../component/HeaderCli'
-import {Button} from 'react-bootstrap'
+import {Button, Form} from 'react-bootstrap'
+import { SubmitHandler,useForm } from 'react-hook-form'
+import { User } from '../../types/user'
+import { signin } from '../../api/user'
+import { useNavigate } from 'react-router-dom'
+import { authen } from '../../ultils/localStore'
 type Props = {}
-
+type FormL = {
+  name:string
+  email: string
+  password: string
+}
 const Login = (props: Props) => {
+
+  const {register, handleSubmit, formState: {errors}} = useForm<FormL>();
+  const [users, setUsers] = useState<User[]>([])
+  const navigate = useNavigate()
+  const onLogin: SubmitHandler<FormL> = async(data) => {
+     const {data:user} = await signin(data);
+    authen(user, ()=> navigate('/'))
+  }
   return (
     <div>
     <HeaderCli/>
@@ -14,21 +31,21 @@ const Login = (props: Props) => {
     </div>
     <div className="col-md-5">
       <h3 className="signin-text mb-3"> Sign In</h3>
-      <form className="">
+      <Form onSubmit={handleSubmit(onLogin)}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" className="form-control" />
+          <input type="email" className="form-control" {...register('email', {required: true})}/>
         </div>
         <div className="form-group mt-4">
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" className="form-control" />
+          <input type="password"  className="form-control" {...register('password', {required: true})}/>
         </div>
         <div className="form-group form-check my-4">
           <input type="checkbox" name="checkbox" className="form-check-input" id="checkbox" />
           <label className="form-check-label" htmlFor="checkbox">Remember Me</label>
         </div>
-        <Button variant="primary">Login</Button>
-      </form>
+        <Button variant="primary" type="submit" >Login</Button>
+      </Form>
     </div>
   </div>
 </div>

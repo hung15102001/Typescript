@@ -15,7 +15,7 @@ type FormV = {
   quantity: number
   image: String
   description: String
-  category: String
+  // category: String
 };
 
 const Add = (props: AddProps) => {
@@ -64,20 +64,20 @@ const Add = (props: AddProps) => {
         <Form.Control type="text" placeholder="Description" {...register('description', {required: true})}/>
       </Form.Group>
 
-      <Form.Group className="mb-3" >
+      {/* <Form.Group className="mb-3" >
         <Form.Label>Img</Form.Label>
-        <Form.Control type="text" placeholder="Description" {...register('image', {required: true})}/>
-      </Form.Group>
+        <Form.Control type="file" placeholder="Description" {...register('image', {required: true})}/>
+      </Form.Group> */}
 
-      <Form.Group className="mb-3" >
+      {/* <Form.Group className="mb-3" >
         <Form.Label>Category</Form.Label>
-        <Form.Control as="select" {...register('categoryId')}>
+        <Form.Control as="select" {...register('category')}>
           <option value='1'>1</option>
 
         </Form.Control>
   
        
-      </Form.Group>
+      </Form.Group> */}
       <Button  variant="primary" type="submit">
         Submit
       </Button>

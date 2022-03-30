@@ -23,6 +23,7 @@ import UpdateNew from "./page/admin/news/Update"
 import "bootstrap/dist/css/bootstrap.min.css";
 import UpdatePro from "./page/admin/product/Update";
 import { add } from "./api/news";
+import PrivateRouter from "./component/authen/PrivateRouter";
 
 function App() {
 
@@ -41,11 +42,11 @@ function App() {
             <Route path="/signup" element={<Signup />} />
           </Route>
 
-          <Route path="admin" element={<AdminLayout />}>
+          <Route path="admin" element={<PrivateRouter> <AdminLayout /></PrivateRouter>}>
             <Route index element={<Navigate to="products" />} />
 
             <Route path="news" >
-                <Route index element={<NewAdmin />}/>
+                <Route index element={ <NewAdmin />}/>
                  <Route path="add" element={<AddNew/>} />
                  <Route path=":id/edit" element={<UpdateNew />} />
             </Route>

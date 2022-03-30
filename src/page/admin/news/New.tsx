@@ -23,11 +23,11 @@ const NewAdmin = (props: NewProps) => {
     getNew();
   },[])
 
-  const onRemove =(id:number) => {
+  const onRemove =(_id:number) => {
 
-    remove(id)
+    remove(_id)
 
-    setNews(news.filter(item => item.id !== id));
+    setNews(news.filter(item => item._id !== _id));
   }
 
  
@@ -55,7 +55,7 @@ const NewAdmin = (props: NewProps) => {
               <td>{item.description}</td>
              
               <td>
-                  <Button size="sm" variant="danger" onClick={()=>onRemove(item.id)} >Remove</Button>
+                  <Button size="sm" variant="danger" onClick={()=>onRemove(item._id)} >Remove</Button>
                   <Button size="sm" className="m-2" variant="warning">
                     <Link className="text-white text-decoration-none" to={`/admin/news/${item.id}/edit`}>Update</Link>
                   </Button>

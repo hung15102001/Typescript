@@ -5,11 +5,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import HeaderCli from '../../component/HeaderCli'
 import {User} from '../../types/user';
 import { SubmitHandler,useForm } from 'react-hook-form'
-import { add } from '../../api/user'
+import { signup } from '../../api/user'
 type Props = {}
 type FormSignup = {
   email: string;
-  username: string;
+  name: string;
   password: string;
 }
 const Signup = (props: Props) => {
@@ -17,7 +17,9 @@ const Signup = (props: Props) => {
   const {register, handleSubmit, formState: {errors}} = useForm<FormSignup>()
   const navigate = useNavigate()
   const onSubmit: SubmitHandler<FormSignup> = async (user) => {
-    const {data} = await add(user);
+    // console.log(user);
+    
+    const {data} = await signup(user);
     console.log(data);
     setUsers([...users, data])
     navigate('/login')
@@ -39,7 +41,7 @@ const Signup = (props: Props) => {
         </div>
         <div className="form-group mt-4">
           <label htmlFor="email">User Name</label>
-          <input type="text" className="form-control" {...register('username', {required: true})}/>
+          <input type="text" className="form-control" {...register('name', {required: true})}/>
         </div>
         <div className="form-group mt-4">
           <label htmlFor="password">Password</label>

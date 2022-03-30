@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet , Link} from 'react-router-dom'
 import {Navbar, Container, Nav} from 'react-bootstrap';
 type Props = {}
 
@@ -10,9 +10,9 @@ const HeaderAmin = (props: Props) => {
     <Container>
     <Navbar.Brand href="#home">Administrator</Navbar.Brand>
     <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="/admin/products">Products</Nav.Link>
-      <Nav.Link href="/admin/news">News</Nav.Link>
+      <Link className="text-decoration-none mx-2 text-white" to={"#home"}>Home</Link>
+      <Link className="text-decoration-none mx-2 text-white" to={"/admin/products"}>Products</Link>
+      <Link className="text-decoration-none mx-2 text-white" to={"/admin/news"}>News</Link>
     </Nav>
     </Container>
   </Navbar>

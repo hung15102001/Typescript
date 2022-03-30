@@ -28,9 +28,9 @@ const ProductAdmin = (props: ProductProps) => {
     getProduct();
   }, []);
 
-  const onRemove =  (id: number) => {
-        remove(id);
-    setProducts(products.filter(item => item.id !== id));
+  const onRemove =  (_id: number) => {
+        remove(_id);
+    setProducts(products.filter(item => item._id !== _id));
   }
 
   const {id} = useParams()
@@ -74,7 +74,7 @@ const ProductAdmin = (props: ProductProps) => {
               <td>{product.categoryId}</td>
               
               <td>
-                  <Button size="sm" variant="danger"  onClick={()=>onRemove(product.id)}>Remove</Button>
+                  <Button size="sm" variant="danger"  onClick={()=>onRemove(product._id)}>Remove</Button>
                   <Button size="sm" className="m-2" variant="warning">
                     <Link className="text-white text-decoration-none" to={`/admin/products/${product.id}/edit`}>Update</Link>
                   </Button>

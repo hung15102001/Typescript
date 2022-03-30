@@ -10,3 +10,13 @@ export const add = (user:User) => {
     const url = '/users';
     return instance.post(url, user)
 }
+
+export const signup = (user:User) => {
+    const url = '/signup';
+    return instance.post(url, user)
+}
+
+export const signin = (user:User) => {
+    const url = '/signin';
+    return instance.post(url, user)
+}
