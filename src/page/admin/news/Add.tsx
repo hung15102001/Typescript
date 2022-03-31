@@ -30,7 +30,6 @@ const AddNew = (props: Props) => {
   }
   return (
         <div>
-          <HeaderAmin/>
        <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>

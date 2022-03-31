@@ -9,7 +9,7 @@ const HeaderCli = (props: Props) => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="container-fluid">
       <NavLink className="navbar-brand" to="/">
-        Logo
+        <img src="img/images.jpg" alt="" width="100px"/>
       </NavLink>
       <button
         className="navbar-toggler"

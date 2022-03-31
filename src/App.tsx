@@ -63,9 +63,10 @@ function App() {
             <Route path="users">
                 <Route index element={<User />} />
                 <Route path="add" element={<AddUser />}/>
-                <Route path=":id/edit" element={<EditUser />}
+                <Route path=":id/edit" element={<EditUser />}/>
             </Route>
           </Route>
+
         </Routes>
       </main>
     </div>

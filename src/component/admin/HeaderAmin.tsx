@@ -14,7 +14,7 @@ const { Header } = Layout;
 const HeaderAmin = (props: Props) => {
   return (
     <Layout>
-    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+    <Header style={{ width: '100%' }}>
       <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['3']}>
         <Menu.Item key="1">
