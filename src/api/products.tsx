@@ -11,9 +11,9 @@ export const remove = (id: number) => {
     return instance.delete(url)
 }
 
-export const add = (products:ProductType) => {
+export const add = (product:ProductType) => {
     const url = `/products`;
-    return instance.post(url, products);
+    return instance.post(url, product);
 }
 
 export const view = (id:number)=>{

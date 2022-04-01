@@ -1,3 +1,5 @@
+
+
 export type ProductType = {
     id: number,
     name: String,
@@ -5,7 +7,7 @@ export type ProductType = {
     quantity: number,
     image:String,
     description:String,
-    categoryId:number,
+    category: String,
 }
 
 

@@ -5,6 +5,8 @@ import {SubmitHandler, useForm} from "react-hook-form"
 import { ProductType } from "../../../types/products";
 import { update, view } from "../../../api/products";
 import HeaderAmin from "../../../component/admin/HeaderAmin";
+import { getAll } from "../../../api/category";
+import { CateType } from "../../../types/category";
 type Props = {};
 
 type FormUp = {
@@ -21,16 +23,29 @@ type FormUp = {
 const Update = (props: Props) => {
   const {register, handleSubmit, formState:{errors}, reset} = useForm<FormUp>();
   const [products, setProducts] = useState<ProductType[]>([])
+  const [category, setCategory] = useState<CateType[]>([])
   // console.log(products);
   
   const {id} = useParams();
   const navigate = useNavigate();
   useEffect(()=>{
-    const getData = async ()=>{
+
+    const getData = async () => {
       const {data} = await view(id);
+      console.log(data);
+      
       reset(data);
     }
     getData();
+
+    const getCate = async ()=>{
+      const {data} = await getAll();
+      console.log(data);
+    
+      setCategory(data)
+    }
+    getCate()
+
   },[])
 
   const onSubmit: SubmitHandler<FormUp> = async (product)=>{
@@ -42,7 +57,6 @@ const Update = (props: Props) => {
   return (
    
     <div>
-       <HeaderAmin />
      <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Group className="mb-3" >
         <Form.Label>Name</Form.Label>
@@ -78,10 +92,10 @@ const Update = (props: Props) => {
 
       <Form.Group className="mb-3" >
         <Form.Label>Category</Form.Label>
-        <Form.Control as="select" {...register('categoryId')}>
-          <option value='1'>1</option>
-          <option value='2'>2</option>
-          <option value='3'>3</option>
+        <Form.Control as="select" {...register('category')}>
+          {category?.map((item, index)=>{
+              <option key={index} value={item.id}>{item.name}</option>
+          })}
         </Form.Control>
   
        

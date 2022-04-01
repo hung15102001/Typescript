@@ -30,14 +30,10 @@ const Update = (props: Props) => {
             reset(data)
         }
         getNew();
-    },[])
+    },[id])
 
     const onSubmit:SubmitHandler<FormN> = async (demo) =>{
-      console.log(demo);
-      
        const {data} = await update(demo);
-       
-       
         setNews(news.filter(item => item.id !== data.id ? item : data))
         navigate('/admin/news')
     }

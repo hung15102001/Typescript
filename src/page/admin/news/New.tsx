@@ -64,7 +64,7 @@ const NewAdmin = (props: NewProps) => {
               <td>
                   <Button size="sm" variant="danger" onClick={()=>onRemove(item._id)} >Remove</Button>
                   <Button size="sm" className="m-2" variant="warning">
-                    <Link className="text-white text-decoration-none" to={`/admin/news/${item.id}/edit`}>Update</Link>
+                    <Link className="text-white text-decoration-none" to={`/admin/news/${item._id}/edit`}>Update</Link>
                   </Button>
                   <Button size="sm"  variant="primary">View</Button>
               </td>

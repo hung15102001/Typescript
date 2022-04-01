@@ -16,7 +16,7 @@ const HeaderAmin = (props: Props) => {
     <Layout>
     <Header style={{ width: '100%' }}>
       <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['3']}>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['4']}>
         <Menu.Item key="1">
             <Link to={'/admin/products'}>Products</Link>
         </Menu.Item>
@@ -25,6 +25,9 @@ const HeaderAmin = (props: Props) => {
         </Menu.Item>
         <Menu.Item key="3">
             <Link to={'/admin/users'}>Users</Link>
+        </Menu.Item>
+        <Menu.Item key="4">
+            <Link to={'/admin/category'}>Categories</Link>
         </Menu.Item>
       </Menu>
     </Header>

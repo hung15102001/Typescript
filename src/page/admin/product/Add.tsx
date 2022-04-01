@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { add } from "../../../api/products";
 import { ProductType } from "../../../types/products";
 import { Link, useNavigate, useNavigationType } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import HeaderAmin from "../../../component/admin/HeaderAmin";
+import { getAll } from "../../../api/category";
+import { CateType } from "../../../types/category";
+
 type AddProps = {
  
 };
@@ -15,13 +18,12 @@ type FormV = {
   quantity: number
   image: String
   description: String
-  // category: String
+  category: String
 };
 
 const Add = (props: AddProps) => {
-    const [products, setProducts] = useState<ProductType[]>([])
-
-    
+    const [products, setProducts] = useState<ProductType[]>([]);
+    const [cate, setCate] = useState<CateType[]>([]);
   const {
     register,
     handleSubmit,
@@ -30,19 +32,21 @@ const Add = (props: AddProps) => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormV> = async (product)=> {
-   console.log(product);
       const {data} = await add(product);
       setProducts([...products, data]);
       navigate('/admin/products');
 }
-
-
-  
-
+useEffect(()=>{
+  const getCate = async () =>{
+    const {data} = await getAll()
+    console.log(data);
+    setCate(data)
+  }
+  getCate()
+},[])
 
   return (
     <div>
-    <HeaderAmin/>
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Group className="mb-3" >
         <Form.Label>Name</Form.Label>
@@ -64,20 +68,25 @@ const Add = (props: AddProps) => {
         <Form.Control type="text" placeholder="Description" {...register('description', {required: true})}/>
       </Form.Group>
 
-      {/* <Form.Group className="mb-3" >
+      <Form.Group className="mb-3" >
         <Form.Label>Img</Form.Label>
-        <Form.Control type="file" placeholder="Description" {...register('image', {required: true})}/>
-      </Form.Group> */}
+        <Form.Control type="text" placeholder="Description" {...register('image', {required: true})}/>
+      </Form.Group>
+     
 
-      {/* <Form.Group className="mb-3" >
+      <Form.Group className="mb-3" >
         <Form.Label>Category</Form.Label>
         <Form.Control as="select" {...register('category')}>
-          <option value='1'>1</option>
 
+    {cate?.map((item, index)=>{
+          return  <option key={index} value={item.id}>{item.name}</option>
+            // <option key={} value="1">1</option>
+        })}
+         
         </Form.Control>
   
        
-      </Form.Group> */}
+      </Form.Group>
       <Button  variant="primary" type="submit">
         Submit
       </Button>

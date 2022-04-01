@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { list, remove, view } from "../../../api/products";
 import HeaderAmin from "../../../component/admin/HeaderAmin";
@@ -6,9 +5,11 @@ import { ProductType } from "../../../types/products";
 import { Button, Modal, Table, Form } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from 'antd';
+
 type ProductProps = {
   data: ProductType[];
   onRemove: (id: number) => void;
+  getDetail:(id: number) =>void;
 };
 
 const ProductAdmin = (props: ProductProps) => {
@@ -26,6 +27,9 @@ const {Content} = Layout
       setProducts(data);
     };
     getProduct();
+
+
+
   }, []);
 
   const onRemove =  (_id: number) => {
@@ -33,14 +37,17 @@ const {Content} = Layout
     setProducts(products.filter(item => item._id !== _id));
   }
 
-  const {id} = useParams()
+  const {id} = useParams();
 
-  const getDetail = async () =>{
-      const {data} = await view(id);
-      console.log(data);
-      
-      setRowData(data)
+  const getDetail = async (id:number) =>{
+    console.log(id);
+    
+    const {data} = await view(id);
+    console.log(data);
+    
+    setRowData(rowData.filter(item => item.id == data.id ? data : item));
   }
+ 
 
 
   return (
@@ -76,14 +83,14 @@ const {Content} = Layout
               <td>{product.quantity}</td>
               <td>{product.image}</td>
               <td>{product.description}</td>
-              <td>{product.categoryId}</td>
+              <td>{product.category}</td>
               
               <td>
                   <Button size="sm" variant="danger"  onClick={()=>onRemove(product._id)}>Remove</Button>
                   <Button size="sm" className="m-2" variant="warning">
-                    <Link className="text-white text-decoration-none" to={`/admin/products/${product.id}/edit`}>Update</Link>
+                    <Link className="text-white text-decoration-none" to={`/admin/products/${product._id}/edit`}>Update</Link>
                   </Button>
-                  <Button size="sm"  variant="secondary" onClick={() =>{handleViewShow(getDetail(product.id))}}>View</Button>
+                  <Button size="sm"  variant="secondary" onClick={() =>{handleViewShow(getDetail(product._id))}}>View</Button>
               </td>
             </tr>;
           })}
@@ -106,7 +113,7 @@ const {Content} = Layout
                   <div>
                       <Form.Group className="mb-3">
                           <Form.Label>Name</Form.Label>
-                          <Form.Control className="name" value={"demo"} readOnly>
+                          <Form.Control className="name" value={rowData.name} readOnly>
                           
                           </Form.Control>
                         
@@ -114,7 +121,7 @@ const {Content} = Layout
 
                       <Form.Group className="mb-3">
                           <Form.Label>Price</Form.Label>
-                          <Form.Control className="name" value="demo" readOnly>
+                          <Form.Control className="name" value={rowData.price} readOnly>
 
                           </Form.Control>
                        
@@ -122,7 +129,7 @@ const {Content} = Layout
 
                       <Form.Group className="mb-3">
                           <Form.Label>Quantity</Form.Label>
-                          <Form.Control className="name" value="demo" readOnly>
+                          <Form.Control className="name" value={rowData.quantity} readOnly>
 
                           </Form.Control>
                         
@@ -130,7 +137,7 @@ const {Content} = Layout
 
                       <Form.Group className="mb-3">
                           <Form.Label>Image</Form.Label>
-                          <Form.Control className="name" value="demo" readOnly>
+                          <Form.Control className="name" value={rowData.image} readOnly>
 
                           </Form.Control>
                            
@@ -138,7 +145,7 @@ const {Content} = Layout
 
                       <Form.Group className="mb-3">
                           <Form.Label>Description</Form.Label>
-                          <Form.Control className="name" value="demo" readOnly>
+                          <Form.Control className="name" value={rowData.description} readOnly>
 
                           </Form.Control>
                          
@@ -146,7 +153,7 @@ const {Content} = Layout
 
                       <Form.Group className="mb-3">
                           <Form.Label>Category</Form.Label>
-                          <Form.Control className="name" value="demo" readOnly>
+                          <Form.Control className="name" value={rowData.category} readOnly>
 
                           </Form.Control>
                       </Form.Group>

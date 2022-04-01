@@ -28,6 +28,11 @@ import 'antd/dist/antd.css';
 import User from "./page/admin/users/User";
 import AddUser from './page/admin/users/Add'
 import EditUser from "./page/admin/users/Edit";
+import Category from "./page/category/Category";
+import AddCate from "./page/category/Add";
+import UpdateCate from "./page/category/Update";
+
+
 function App() {
 
 
@@ -64,6 +69,12 @@ function App() {
                 <Route index element={<User />} />
                 <Route path="add" element={<AddUser />}/>
                 <Route path=":id/edit" element={<EditUser />}/>
+            </Route>
+
+            <Route path="category">
+                <Route index element={<Category />} />
+                <Route path="add" element={<AddCate />}/>
+                <Route path=":id/edit" element={<UpdateCate />}/>
             </Route>
           </Route>
 

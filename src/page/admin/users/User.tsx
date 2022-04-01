@@ -59,7 +59,7 @@ const User = (props: Props) => {
                 title={<a href="https://ant.design">{item.name}</a>}
                 description={item.email}
               />
-              <div>Content</div>
+              {/* <div>Content</div> */}
             </List.Item>
           )}
         />
