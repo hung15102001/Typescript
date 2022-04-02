@@ -15,7 +15,7 @@ const UpdateCate = (props: Props) => {
   const {register, handleSubmit, formState: {errors}, reset} = useForm<FormC>()
   const [category, setCategory] = useState<CateType[]>([])
 const {id} = useParams()
-console.log(id);
+
 
 useEffect(()=>{
     const getData = async ()=>{
@@ -25,9 +25,10 @@ useEffect(()=>{
     }
     getData();
 
-  },[id])
+  },[])
   
   const onSubmit:SubmitHandler<FormC> = async (cate)=>{
+
       const {data} = await edit(cate)
       setCategory(category.filter(item => item.id == data.id ? data: item))
       navigate('/admin/category')

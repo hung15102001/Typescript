@@ -10,13 +10,12 @@ import { CateType } from "../../../types/category";
 type Props = {};
 
 type FormUp = {
-  name: String
+  name: string
   price: number
   quantity: number
-  image: String
-  description: String
-  category: String
-
+  image: string
+  description: string
+  category: string
 }
 
 
@@ -27,13 +26,10 @@ const Update = (props: Props) => {
   // console.log(products);
   
   const {id} = useParams();
-  const navigate = useNavigate();
   useEffect(()=>{
 
     const getData = async () => {
       const {data} = await view(id);
-      console.log(data);
-      
       reset(data);
     }
     getData();
@@ -47,9 +43,10 @@ const Update = (props: Props) => {
     getCate()
 
   },[])
-
+  const navigate = useNavigate();
   const onSubmit: SubmitHandler<FormUp> = async (product)=>{
-    // console.log(product);
+      console.log(id);
+      
       const {data} = await update(product);
       setProducts(products.filter(item => item.id !== data.id ? item : data));
       navigate('/admin/products');
@@ -93,8 +90,8 @@ const Update = (props: Props) => {
       <Form.Group className="mb-3" >
         <Form.Label>Category</Form.Label>
         <Form.Control as="select" {...register('category')}>
-          {category?.map((item, index)=>{
-              <option key={index} value={item.id}>{item.name}</option>
+        {category?.map((item, index)=>{
+           return     <option key={index} value={item.id}>{item.name}</option>
           })}
         </Form.Control>
   

@@ -31,11 +31,7 @@ const Add = (props: AddProps) => {
   } = useForm<FormV>();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<FormV> = async (product)=> {
-      const {data} = await add(product);
-      setProducts([...products, data]);
-      navigate('/admin/products');
-}
+
 useEffect(()=>{
   const getCate = async () =>{
     const {data} = await getAll()
@@ -44,6 +40,12 @@ useEffect(()=>{
   }
   getCate()
 },[])
+
+const onSubmit: SubmitHandler<FormV> = async (product)=> {
+  const {data} = await add(product);
+  setProducts([...products, data]);
+  navigate('/admin/products');
+}
 
   return (
     <div>

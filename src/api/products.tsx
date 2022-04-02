@@ -12,15 +12,19 @@ export const remove = (id: number) => {
 }
 
 export const add = (product:ProductType) => {
+    console.log(product);
+    
     const url = `/products`;
     return instance.post(url, product);
 }
 
-export const view = (id:number)=>{
+export const view = (id:string)=>{
     const url = `/products/${id}`;
     return instance.get(url)
 }
-export const update = (products:ProductType) => {
-    const url = `/products/${products.id}`;
-    return instance.put(url, products)
+export const update = (product:ProductType) => {
+    console.log(product._id);
+    
+    const url = `/products/${product._id}`;
+    return instance.put(url, product)
 }

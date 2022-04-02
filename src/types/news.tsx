@@ -1,6 +1,6 @@
 export type NewType = {
-    id: number,
-    name: String
-   img: String
-   description: String
+    id?: number,
+    name: string
+   img: string
+   description: string
 }

@@ -12,7 +12,7 @@ export const remove = (id:number) => {
     return instance.delete(url);
 }
 
-export const add = (demo:NewType) => {
+export const add = (demo:NewType) => {    
     const url = `/news`;
     return instance.post(url, demo);
 }
@@ -21,6 +21,6 @@ export const view = (id:number) =>{
     return instance.get(url)
 }
 export const update = (demo:NewType) => {
-    const url = `/news/${demo.id}`
+    const url = `/news/${demo._id}`
     return instance.put(url, demo)
 }

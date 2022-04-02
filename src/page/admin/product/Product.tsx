@@ -39,13 +39,12 @@ const {Content} = Layout
 
   const {id} = useParams();
 
-  const getDetail = async (id:number) =>{
+  const getDetail = async () =>{
     console.log(id);
-    
     const {data} = await view(id);
     console.log(data);
     
-    setRowData(rowData.filter(item => item.id == data.id ? data : item));
+    setRowData(data);
   }
  
 

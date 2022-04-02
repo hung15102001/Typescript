@@ -27,14 +27,20 @@ const Update = (props: Props) => {
     useEffect(()=>{
         const getNew = async () => {
             const {data} = await view(id)
+            console.log(data);
+            
             reset(data)
         }
         getNew();
-    },[id])
+    },[])
 
     const onSubmit:SubmitHandler<FormN> = async (demo) =>{
+      console.log(demo);
+      
        const {data} = await update(demo);
-        setNews(news.filter(item => item.id !== data.id ? item : data))
+       console.log(data.id);
+       
+        setNews(news.filter(item => item.id !== data.id ? data : item))
         navigate('/admin/news')
     }
   return (
