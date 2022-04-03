@@ -18,6 +18,7 @@ const NewAdmin = (props: NewProps) => {
     
     const getNew = async () => {
       const {data} = await getAll();
+      console.log(news);
       setNews(data);
   
     }

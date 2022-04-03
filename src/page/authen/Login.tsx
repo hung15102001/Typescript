@@ -8,15 +8,16 @@ import { useNavigate } from 'react-router-dom'
 import { authen } from '../../ultils/localStore'
 type Props = {}
 type FormL = {
-  name:string
+  name:string | number
   email: string
-  password: string
+  password: string | number
 }
 const Login = (props: Props) => {
 
   const {register, handleSubmit, formState: {errors}} = useForm<FormL>();
   const [users, setUsers] = useState<User[]>([])
   const navigate = useNavigate()
+
   const onLogin: SubmitHandler<FormL> = async(data) => {
      const {data:user} = await signin(data);
     authen(user, ()=> navigate('/'))

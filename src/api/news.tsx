@@ -1,7 +1,8 @@
 import { NewType } from "../types/news";
 // import { ProductType } from "../types/products";
+import {isAuthenticate} from '../ultils/localStore'
 import instance from "./instance";
-
+const {token, user} = isAuthenticate()
 export const getAll = () => {
     const url = '/news';
     return instance.get(url);
@@ -13,8 +14,12 @@ export const remove = (id:number) => {
 }
 
 export const add = (demo:NewType) => {    
-    const url = `/news`;
-    return instance.post(url, demo);
+    const url = `/news/${user._id}`;
+    return instance.post(url, demo,{
+        headers : {
+            "Authorization" : `Bearer ${token}`
+        }
+    });
 }
 export const view = (id:number) =>{
     const url = `/news/${id}`;
