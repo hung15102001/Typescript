@@ -12,14 +12,6 @@ const User = (props: Props) => {
     const [loading, setLoading] = useState(false);
   const [data, setData] = useState<UserType[]>([]);
 
-  const loadMoreData = () => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-   
-  };
-
   useEffect(() => {
     const getData = async () =>{
         const {data} = await getAll();
@@ -27,7 +19,6 @@ const User = (props: Props) => {
         setData(data);
     }
     getData();
-    loadMoreData();
   }, []);
 
 
@@ -44,7 +35,6 @@ const User = (props: Props) => {
     >
       <InfiniteScroll
         dataLength={data.length}
-        next={loadMoreData}
         hasMore={data.length < 50}
         loader={<Skeleton  paragraph={{ rows: 1 }} active />}
         endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}

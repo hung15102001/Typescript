@@ -1,6 +1,6 @@
 export const authen = (user:{}, next:()=>void)=>{
     try {
-     localStorage.setItem('user', JSON.stringify(user)as string);
+     localStorage.setItem('user', JSON.stringify({user})as string);
         next()
     } catch (error) {
         console.log(error);
@@ -9,6 +9,9 @@ export const authen = (user:{}, next:()=>void)=>{
 }
 
 export const isAuthenticate = () => {
-    if(!localStorage.getItem('user'))return
-    return JSON.parse(localStorage.getItem('user')as string)
+    const a = JSON.parse(localStorage.getItem('user') as string);
+    
+    if(!a)return false;
+
+    return a
 }

@@ -1,6 +1,6 @@
 import axios from "axios"
 import instance from "./instance";
-import {User} from "../types/user"
+import {UserType} from "../types/user"
 export const getAll = () => {
     const url = '/users';
     return instance.get(url);
@@ -9,12 +9,12 @@ export const getDetail = (id:number)=>{
     const url = `/users/${id}`
     return instance.get(url)
 }
-export const signup = (user:User) => {
+export const signup = (user:UserType) => {
     const url = '/signup';
     return instance.post(url, user)
 }
 
-export const signin = (user:User) => {
+export const signin = (user:UserType) => {
     const url = '/signin';
     return instance.post(url, user)
 }

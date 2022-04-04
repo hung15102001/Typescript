@@ -7,23 +7,26 @@ import { Form, Button } from "react-bootstrap";
 import HeaderAmin from "../../../component/admin/HeaderAmin";
 import { getAll } from "../../../api/category";
 import { CateType } from "../../../types/category";
-
 type AddProps = {
  
 };
 
 type FormV = {
-  name: String
+  name: string
   price: number
   quantity: number
-  image: String
-  description: String
-  category: String
+  image: string
+  description: string
+  category: string
 };
 
 const Add = (props: AddProps) => {
     const [products, setProducts] = useState<ProductType[]>([]);
     const [cate, setCate] = useState<CateType[]>([]);
+    const [file, setFile] = useState<string>();
+    const handleFileUpload = (e) => {
+        setFile(URL.createObjectURL(e.target.files[0]))
+    }
   const {
     register,
     handleSubmit,
@@ -41,7 +44,7 @@ useEffect(()=>{
   getCate()
 },[])
 
-const onSubmit: SubmitHandler<FormV> = async (product)=> {
+const onSubmit: SubmitHandler<FormV> = async (product:ProductType)=> {
   const {data} = await add(product);
   setProducts([...products, data]);
   navigate('/admin/products');
@@ -71,12 +74,14 @@ const onSubmit: SubmitHandler<FormV> = async (product)=> {
       </Form.Group>
 
       <Form.Group className="mb-3" >
-        <Form.Label>Img</Form.Label>
-        <Form.Control type="text" placeholder="Description" {...register('image', {required: true})}/>
+        <Form.Label>Description</Form.Label>
+        <Form.Control type="file" placeholder="Chọn ảnh" {...register('image', {required: true})}
+          onChange={(e)=>handleFileUpload(e)}
+        />
       </Form.Group>
      
 
-      <Form.Group className="mb-3" >
+      {/* <Form.Group className="mb-3" >
         <Form.Label>Category</Form.Label>
         <Form.Control as="select" {...register('category')}>
 
@@ -88,7 +93,7 @@ const onSubmit: SubmitHandler<FormV> = async (product)=> {
         </Form.Control>
   
        
-      </Form.Group>
+      </Form.Group> */}
       <Button  variant="primary" type="submit">
         Submit
       </Button>

@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import HeaderCli from '../../component/HeaderCli'
 import {Button, Form} from 'react-bootstrap'
 import { SubmitHandler,useForm } from 'react-hook-form'
-import { User } from '../../types/user'
+import { UserType } from '../../types/user'
 import { signin } from '../../api/user'
 import { useNavigate } from 'react-router-dom'
 import { authen } from '../../ultils/localStore'
+import toastr from 'toastr'
 type Props = {}
 type FormL = {
   name:string | number
@@ -15,12 +16,17 @@ type FormL = {
 const Login = (props: Props) => {
 
   const {register, handleSubmit, formState: {errors}} = useForm<FormL>();
-  const [users, setUsers] = useState<User[]>([])
   const navigate = useNavigate()
 
-  const onLogin: SubmitHandler<FormL> = async(data) => {
-     const {data:user} = await signin(data);
-    authen(user, ()=> navigate('/'))
+  const onLogin: SubmitHandler<FormL> = async dataForm => {
+      try {
+        const {data:user} = await signin(dataForm);
+        localStorage.setItem('authen', JSON.stringify(dataForm));
+        toastr.success('success');
+       authen(user, ()=> navigate('/'))
+      } catch (error) {
+        toastr.error('error')
+      }
   }
   return (
     <div>

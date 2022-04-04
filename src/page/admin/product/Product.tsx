@@ -5,17 +5,20 @@ import { ProductType } from "../../../types/products";
 import { Button, Modal, Table, Form } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from "antd";
+import Paginate from "../../../component/Pagination/Pagination";
 
 
 type ProductProps = {
   data: ProductType[];
   onRemove: (id: number) => void;
-  getDetail: (id: number) => void;
+  getDetail: (id: string) => void;
 };
 
 const ProductAdmin = (props: ProductProps) => {
-  const [products, setProducts] = useState<ProductType[]>();
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [rowData, setRowData] = useState<ProductType[]>([]);
+  const [totalItem, setTotalItem] = useState(0);
+  const { id, page } = useParams();
 
   const [viewShow, setViewShow] = useState(false);
   const handleViewShow = () => {
@@ -29,7 +32,6 @@ const ProductAdmin = (props: ProductProps) => {
   useEffect(() => {
     (async () => {
       const { data } = await list();
-      console.log(data);
       setProducts(data.pro);
     })();
   }, []);
@@ -39,13 +41,10 @@ const ProductAdmin = (props: ProductProps) => {
     setProducts(products.filter((item) => item._id !== _id));
   };
 
-  const { id } = useParams();
-
-  const getDetail = async () => {
-    console.log(id);
+  const getDetail = async (id) => {
     const { data } = await view(id);
     console.log(data);
-
+    
     setRowData(data);
   };
 
@@ -124,7 +123,8 @@ const ProductAdmin = (props: ProductProps) => {
               })}
             </tbody>
           </Table>
-         
+
+
 
           <div className="modal-box-view">
             <Modal

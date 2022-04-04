@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout, Menu} from 'antd';
 import FooterAdmin from './FooterAdmin';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 type Props = {}
@@ -15,8 +15,12 @@ const HeaderAmin = (props: Props) => {
   return (
     <Layout>
     <Header style={{ width: '100%' }}>
-      <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['4']}>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['5']}>
+      <Menu.Item key="1">
+            <Link to={'/'} className="fw-bold">
+                  GOHOME
+            </Link>
+        </Menu.Item>
         <Menu.Item key="1">
             <Link to={'/admin/products'}>Products</Link>
         </Menu.Item>
