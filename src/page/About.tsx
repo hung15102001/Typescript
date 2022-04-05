@@ -1,18 +1,16 @@
 import React from 'react'
 import Banner from '../component/Banner'
-import HeaderCli from '../component/HeaderCli'
+
 
 type Props = {}
 
-const Home = (props: Props) => {
+const About = (props: Props) => {
   return (
     <div>
-
         <Banner/>
-        <main></main>
+        About
     </div>
-
   )
 }
 
-export default Home
+export default About

@@ -1,11 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Banner from './Banner'
 import Menu from './Menu'
 
 type Props = {}
 
 const HeaderCli = (props: Props) => {
   return (
+    <>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="container-fluid">
       <NavLink className="navbar-brand" to="/">
@@ -28,6 +30,7 @@ const HeaderCli = (props: Props) => {
       </div>
     </div>
   </nav>
+  </>
   )
 }
 

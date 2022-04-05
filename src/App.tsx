@@ -6,7 +6,7 @@ import axios from "axios";
 import { Navigate, NavLink, Route, Routes } from "react-router-dom";
 import CliLayout from "./page/layout/CliLayout";
 import Home from "./page/Home";
-import Product from "./page/Product";
+import Product from "./page/products/Product";
 import Dashboard from "./page/admin/Dashboard";
 import AdminLayout from "./page/layout/AdminLayout";
 import New from "./page/admin/news/New";
@@ -31,6 +31,10 @@ import EditUser from "./page/admin/users/Edit";
 import Category from "./page/category/Category";
 import AddCate from "./page/category/Add";
 import UpdateCate from "./page/category/Update";
+import Cart from "./page/Cart";
+import DetailPro from "./page/products/DetailPro";
+import ProductCli from "./page/products/Product";
+import About from "./page/About";
 
 
 function App() {
@@ -45,9 +49,14 @@ function App() {
         <Routes>
           <Route path="/" element={<CliLayout />}>
             <Route index element={<Home />} />
-            <Route path="/products" element={<Product />} />
+            <Route path="products" >
+              <Route  index element={<ProductCli/>}/>
+              <Route path=":id" element={<DetailPro />} />
+            </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/about" element={<About />}/>
           </Route>
 
           <Route path="admin" element={<PrivateRouter> <AdminLayout /></PrivateRouter>}>

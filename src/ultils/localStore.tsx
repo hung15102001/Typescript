@@ -15,3 +15,7 @@ export const isAuthenticate = () => {
 
     return a
 }
+
+export const cart = () => {
+    
+}
