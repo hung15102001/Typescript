@@ -14,7 +14,7 @@ export const remove = (id:number) => {
 }
 
 export const add = (demo:NewType) => {    
-    const url = `/news/${user._id}`;
+    const url = `/news`;
     return instance.post(url, demo,{
         headers : {
             "Authorization" : `Bearer ${token}`

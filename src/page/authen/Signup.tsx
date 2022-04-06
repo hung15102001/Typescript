@@ -26,7 +26,7 @@ const Signup = (props: Props) => {
   }
   return (
     <div>
-    <HeaderCli/>
+
     <div className="container">
   <div className="row content">
     <div className="col-md-6 mb-3">

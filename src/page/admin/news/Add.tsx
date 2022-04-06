@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {NewType} from '../../../types/news'
-import {Form, Button} from 'react-bootstrap';
+import {Form, Button, Toast} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import { add } from '../../../api/news';
 import HeaderAmin from '../../../component/admin/HeaderAmin';
+import toastr from "toastr";
+import { upload } from '../../../ultils/uploads';
 type Props = {
 }
 
@@ -20,26 +22,33 @@ const AddNew = (props: Props) => {
   const [file, setFile] = useState<string>()
   const [viewFile, setViewFile] = useState()
   const navigate = useNavigate();
-  const handleFileUpload = (e) => {
-      // setFile(URL.createObjectURL(e.target.files[0]))
-      const demo = e.target.files[0]
-      previewFile(demo)
+
+  const handleFileUpload = (e:any) => {
+      setFile(URL.createObjectURL(e.target.files[0]))
   }
-  const previewFile = (demo) => {
+  const previewFile = (data) => {
     const reader = new FileReader();
-    reader.readAsDataURL(demo)
+    reader.readAsDataURL(data)
     reader.onloadend = ()=>{
       setViewFile(reader.result)
     }
-    
   }
-  const onSubmit : SubmitHandler<FormN> =async (demo) => {
-    const {data} = await add(demo);
-    console.log(data);
+  const onSubmit : SubmitHandler<FormN> =async data => {
+   try {
+     console.log(data);
+     
+    const imgUrl  = await upload(data.img[0]);
+    console.log(imgUrl);
     
-    setNews([...news, data])
+   await add({...data, img: imgUrl});
+
+    setFile('')
+    toastr.success("Thành công")
       
       navigate('/admin/news')
+   } catch (error) {
+      toastr.error('Lỗi')
+   }
   }
   return (
         <div>
@@ -51,9 +60,9 @@ const AddNew = (props: Props) => {
 
         <Form.Group className="mb-3" >
         <Form.Label>Image</Form.Label>
-        <Form.Control type="file" placeholder="Chọn ảnh" {...register('image', {required: true})}
-          onChange={(e)=>handleFileUpload(e)}
-          value={file}
+        <Form.Control type="file" placeholder="Chọn ảnh" {...register('img', {required: true})}
+          onChange={e=>handleFileUpload(e)}
+        
         />
       </Form.Group>
 

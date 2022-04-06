@@ -59,7 +59,7 @@ const NewAdmin = (props: NewProps) => {
             return <tr key={index}>
               <td>{index+1}</td>
               <td>{item.name}</td>
-              <td>{item.img}</td>
+              <td><img src={item.img} alt="" width="120px" /></td>
               <td>{item.description}</td>
              
               <td>

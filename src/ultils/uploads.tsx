@@ -1,13 +1,10 @@
-import React from 'react'
+import axios from "axios";
 
-type Props = {}
-
-const uploads = (props: Props) => {
-  return (
-    <div>
-        
-    </div>
-  )
+export const upload = async (file: string) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset","tsllkbbb");
+  const {data} = await axios.post('https://api.cloudinary.com/v1_1/cornyhung/image/upload', formData);
+  console.log(data);
+  return data.url;
 }
-
-export default uploads
