@@ -23,12 +23,12 @@ const ProductCli = (props: Props) => {
     }
     getPro()
 },[])
-  const handleSubmit = async (handleFilter:ProductType) => {
+  const handleSubmit = async (handleFilter) => {
 
-    setProducts({
-      ...filter,
-      title: handleFilter.searchs
-    })
+    // setFilter({
+    //   ...filter,
+    //   title: handleFilter.searchs
+    // })
   }
   return (
     <div>
@@ -42,7 +42,7 @@ const ProductCli = (props: Props) => {
    
           {products?.map((item, index) => { 
           return(
-            <div className="col mb-5">  
+            <div className="col mb-5" key={item._id}>  
           <div className="card h-100">
        
           <div className="badge bg-dark text-white position-absolute" style={{top: '0.5rem', right: '0.5rem'}}>Sale</div>

@@ -1,17 +1,23 @@
 import React from 'react'
-
+import { Carousel } from 'react-responsive-carousel';
 type Props = {}
 
 const Banner = (props: Props) => {
   return (
-   <header className="bg-dark py-5 banner">
-  <div className="container px-4 px-lg-5 my-5">
-    <div className=" text-center">
-      <h1 className="display-4 fw-bolder text-white">Shop Mèo Béo</h1>
-      <p className="lead fw-normal text-white-50 mb-0">Đưa Mèo Béo Đến Mọi Nhà</p>
+    <Carousel>
+    <div className="img">
+        <img src="img/meo1.jpg" />
+        <p className="legend ">Shop Mèo Béo</p>
     </div>
-  </div>
-</header>
+    <div className="img">
+        <img src="img/meo2.jpg" />
+        <p className="legend">Đưa Mèo Béo Đến Mọi Nhà</p>
+    </div>
+    <div className="img">
+        <img src="img/meo3.jpg" />
+        <p className="legend">KHông Béo Hoàn Trả 200%</p>
+    </div>
+  </Carousel>
 
   )
 }

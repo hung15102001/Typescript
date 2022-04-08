@@ -35,7 +35,7 @@ import Cart from "./page/Cart";
 import DetailPro from "./page/products/DetailPro";
 import ProductCli from "./page/products/Product";
 import About from "./page/About";
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
 

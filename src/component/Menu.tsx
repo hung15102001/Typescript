@@ -8,6 +8,7 @@ type Props = {}
 
 const Menu = (props: Props) => {  
   const a = isAuthenticate();
+
   const navigate = useNavigate()
   const logout = () => {
     localStorage.removeItem("user");
@@ -24,7 +25,7 @@ const Menu = (props: Props) => {
   <li className="nav-item">
   <NavLink className="nav-link" aria-current="page" to="/about" >About</NavLink>
   </li>
-  {a && (
+  {a.user && (
     <>
   <li className="nav-item">
   <NavLink className="nav-link" aria-current="page" to="/admin" >Dashboard</NavLink>
@@ -33,7 +34,7 @@ const Menu = (props: Props) => {
   <NavLink className="nav-link" aria-current="page" to="/login" onClick={()=> logout()}>Logout</NavLink>
   </li>
    <li className="nav-item">
-    <Nav className="nav-link" aria-current="page" >Chào:  {a.user.name}</Nav>
+    <Nav className="nav-link" aria-current="page" >Chào:  {a.user.user.name}</Nav>
    </li>
    </>
   )}
