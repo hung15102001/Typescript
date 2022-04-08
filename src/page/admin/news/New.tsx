@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { getAll, remove } from '../../../api/news';
+import { getAll, remove, view } from '../../../api/news';
 // import { list } from '../../../api/products';
 import HeaderAmin from '../../../component/admin/HeaderAmin'
 import { NewType } from '../../../types/news';
-import {Table, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
+import { Button, Modal, Table, Form } from "react-bootstrap";
 
 type NewProps = {
   data: NewType[];
+  getDetail: (id:string) => void;
 }
 
 const NewAdmin = (props: NewProps) => {
   const [news, setNews] = useState<NewType[]>([]);
+  const [rowData, setRowData] = useState<NewType[]>([]);
   const {Content} = Layout
   useEffect(()=>{
     
@@ -30,6 +32,19 @@ const NewAdmin = (props: NewProps) => {
     remove(_id)
 
     setNews(news.filter(item => item._id !== _id));
+  }
+  const [viewShow, setViewShow] = useState(false);
+  const handleViewShow = () => {
+    setViewShow(true);
+  };
+  const hanleViewClose = () => {
+    setViewShow(false);
+  };
+
+  const getDetail = async (id) => {
+      const {data} = await view(id);
+      console.log(data);
+      setRowData(data)
   }
 
    
@@ -67,13 +82,57 @@ const NewAdmin = (props: NewProps) => {
                   <Button size="sm" className="m-2" variant="warning">
                     <Link className="text-white text-decoration-none" to={`/admin/news/${item._id}/edit`}>Update</Link>
                   </Button>
-                  <Button size="sm"  variant="primary">View</Button>
+                  <Button size="sm"  variant="primary" onClick={()=>handleViewShow(getDetail(item._id))}>View</Button>
               </td>
             </tr>;
           })}
         </tbody>
    </Table>
- 
+   <div className="modal-box-view">
+            <Modal
+              show={viewShow}
+              onHide={hanleViewClose}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title className="text-center">View Sản Phẩm</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                      className="name"
+                      value={rowData.name}
+                      readOnly
+                    ></Form.Control>
+                  </Form.Group>
+
+                
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Image</Form.Label>
+             
+                 
+                        <img src={rowData.img} alt="" width="300px" />
+                 
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control
+                      className="name"
+                      value={rowData.description}
+                      readOnly
+                    ></Form.Control>
+                  </Form.Group>
+
+                
+                </div>
+              </Modal.Body>
+            </Modal>
+          </div>
    
   
     </div>
