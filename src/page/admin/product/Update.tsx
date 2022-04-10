@@ -7,6 +7,9 @@ import { update, view } from "../../../api/products";
 import HeaderAmin from "../../../component/admin/HeaderAmin";
 import { getAll } from "../../../api/category";
 import { CateType } from "../../../types/category";
+import toastr from "toastr";
+import { upload } from "../../../ultils/uploads";
+
 type Props = {};
 
 type FormUp = {
@@ -23,8 +26,12 @@ const Update = (props: Props) => {
   const {register, handleSubmit, formState:{errors}, reset} = useForm<FormUp>();
   const [products, setProducts] = useState<ProductType[]>([])
   const [category, setCategory] = useState<CateType[]>([])
+  const [preView, setPreView] = useState<string>()
   // console.log(products);
   
+  const handleUpload = (e: any) => {
+    setPreView(URL.createObjectURL(e.target.value))
+  }
   const {id} = useParams();
   useEffect(()=>{
 
@@ -44,12 +51,22 @@ const Update = (props: Props) => {
 
   },[])
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<FormUp> = async (product)=>{
-      console.log(id);
+  const onSubmit: SubmitHandler<FormUp> = async (product:ProductType)=>{
       
-      const {data} = await update(product);
+    try {
+
+   
+          // const url = await upload(product.image[0])
+  
+
+      const {data} = await update(product );
       setProducts(products.filter(item => item.id !== data.id ? item : data));
+      toastr.success('Update success')
       navigate('/admin/products');
+
+    } catch (error) {
+      toastr.error('Lỗi')
+    }
   }
   return (
    
@@ -84,14 +101,17 @@ const Update = (props: Props) => {
 
       <Form.Group className="mb-3" >
         <Form.Label>Img</Form.Label>
-        <Form.Control type="text" placeholder="Img" {...register('image', {required: true})}/>
+        <Form.Control type="file" placeholder="Img" {...register('image')}
+            onChange={(e) => handleUpload(e)}
+        />
+
       </Form.Group>
 
       <Form.Group className="mb-3" >
         <Form.Label>Category</Form.Label>
         <Form.Control as="select" {...register('category')}>
         {category?.map((item, index)=>{
-           return     <option key={index} value={item.id}>{item.name}</option>
+           return     <option key={index} value={item._id}>{item.name}</option>
           })}
         </Form.Control>
   

@@ -26,13 +26,13 @@ const AddNew = (props: Props) => {
   const handleFileUpload = (e:any) => {
       setFile(URL.createObjectURL(e.target.files[0]))
   }
-  const previewFile = (data) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(data)
-    reader.onloadend = ()=>{
-      setViewFile(reader.result)
-    }
-  }
+  // const previewFile = (data) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(data)
+  //   reader.onloadend = ()=>{
+  //     setViewFile(reader.result)
+  //   }
+  // }
   const onSubmit : SubmitHandler<FormN> =async data => {
    try {
      console.log(data);

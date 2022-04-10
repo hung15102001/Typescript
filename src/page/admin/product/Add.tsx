@@ -7,6 +7,8 @@ import { Form, Button } from "react-bootstrap";
 import HeaderAmin from "../../../component/admin/HeaderAmin";
 import { getAll } from "../../../api/category";
 import { CateType } from "../../../types/category";
+import toastr from "toastr";
+import { upload } from "../../../ultils/uploads";
 type AddProps = {
  
 };
@@ -45,9 +47,19 @@ useEffect(()=>{
 },[])
 
 const onSubmit: SubmitHandler<FormV> = async (product:ProductType)=> {
-  const {data} = await add(product);
-  setProducts([...products, data]);
-  navigate('/admin/products');
+
+  try {
+      console.log(product);
+      const imgUrl = await upload(product.image[0])
+      console.log(imgUrl);
+      
+      await add({...product, image: imgUrl});
+      toastr.success('Thành Công')
+    navigate('/admin/products');
+  
+  } catch (error) {
+    toastr.error('Lỗi')
+  }
 }
 
   return (
@@ -81,19 +93,19 @@ const onSubmit: SubmitHandler<FormV> = async (product:ProductType)=> {
       </Form.Group>
      
 
-      {/* <Form.Group className="mb-3" >
+      <Form.Group className="mb-3" >
         <Form.Label>Category</Form.Label>
         <Form.Control as="select" {...register('category')}>
 
     {cate?.map((item, index)=>{
-          return  <option key={index} value={item.id}>{item.name}</option>
+          return  <option key={index} value={item._id}>{item.name}</option>
             // <option key={} value="1">1</option>
         })}
          
         </Form.Control>
   
        
-      </Form.Group> */}
+      </Form.Group>
       <Button  variant="primary" type="submit">
         Submit
       </Button>

@@ -43,11 +43,11 @@ body{
 .birthday-section{
     padding: 15px;
 }
-/* .banner{
+.banner{
     background-image: url('https://img.thuthuat123.com/uploads/2019/06/11/hinh-nen-meo-dang-yeu-ngo-nghinh_093847752.jpg');
     background-repeat: round;
-    background-size: 100% !important;
-  } */
+    background-size:cover;
+  }
 
 .img{
     padding: 0px 10px 0px 10px;

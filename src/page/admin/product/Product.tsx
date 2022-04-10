@@ -88,7 +88,7 @@ const ProductAdmin = (props: ProductProps) => {
                     <td>{product.name}</td>
                     <td>{product.price}</td>
                     <td>{product.quantity}</td>
-                    <td>{product.image}</td>
+                    <td><img src={product.image} alt="" width="150px" /></td>
                     <td>{product.description}</td>
                     <td>{product.category}</td>
 
@@ -167,11 +167,7 @@ const ProductAdmin = (props: ProductProps) => {
 
                   <Form.Group className="mb-3">
                     <Form.Label>Image</Form.Label>
-                    <Form.Control
-                      className="name"
-                      value={rowData.image}
-                      readOnly
-                    ></Form.Control>
+                    <img src={rowData.image} width="150px" alt="" /> 
                   </Form.Group>
 
                   <Form.Group className="mb-3">

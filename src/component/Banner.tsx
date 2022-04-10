@@ -4,20 +4,14 @@ type Props = {}
 
 const Banner = (props: Props) => {
   return (
-    <Carousel>
-    <div className="img">
-        <img src="img/meo1.jpg" />
-        <p className="legend ">Shop Mèo Béo</p>
-    </div>
-    <div className="img">
-        <img src="img/meo2.jpg" />
-        <p className="legend">Đưa Mèo Béo Đến Mọi Nhà</p>
-    </div>
-    <div className="img">
-        <img src="img/meo3.jpg" />
-        <p className="legend">KHông Béo Hoàn Trả 200%</p>
-    </div>
-  </Carousel>
+<header className="bg-dark py-5 banner">
+<div className="container px-4 px-lg-5 my-5">
+  <div className="text-center text-white">
+    <h1 className="display-4 fw-bolder">Shop Mèo Béo</h1>
+    <p className="lead fw-normal  mb-0">Không Béo Không Lấy Tiền</p>
+  </div>
+</div>
+</header>
 
   )
 }
