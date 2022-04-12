@@ -30,11 +30,13 @@ const ProductAdmin = (props: ProductProps) => {
   const { Content } = Layout;
 
   useEffect(() => {
-    (async () => {
-      const { data } = await list();
-      setProducts(data.pro);
-    })();
-  }, []);
+    const getData = async () => {
+      const { data:pro } = await list();
+    
+      setProducts([pro]);
+    }
+    getData();
+  },[]);
 
   const onRemove = (_id: number) => {
     remove(_id);
@@ -43,9 +45,9 @@ const ProductAdmin = (props: ProductProps) => {
 
   const getDetail = async (id) => {
     const { data } = await view(id);
-    console.log(data);
+
     
-    setRowData(data);
+    setRowData(data.pro);
   };
 
   return (
@@ -81,14 +83,15 @@ const ProductAdmin = (props: ProductProps) => {
               </tr>
             </thead>
             <tbody>
-              {products?.map((product, index) => {
-                return (
-                  <tr key={index}>
+              {products.map((product, index) => {
+             
+                
+                return (<tr key={index}>
                     <td>{index + 1}</td>
                     <td>{product.name}</td>
                     <td>{product.price}</td>
                     <td>{product.quantity}</td>
-                    <td><img src={product.image} alt="" width="150px" /></td>
+                    <td><img src={product.image}  width="150px" /></td>
                     <td>{product.description}</td>
                     <td>{product.category}</td>
 
@@ -118,8 +121,7 @@ const ProductAdmin = (props: ProductProps) => {
                         View
                       </Button>
                     </td>
-                  </tr>
-                );
+                  </tr>)
               })}
             </tbody>
           </Table>

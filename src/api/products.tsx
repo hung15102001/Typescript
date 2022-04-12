@@ -33,3 +33,7 @@ export const update = (product:ProductType) => {
     const url = `/products/${product._id}`;
     return instance.put(url, product)
 }
+export const cateForPro = (cateId) => {
+    const url = `/products?category=${cateId}`;
+    return instance.get(url)    
+}

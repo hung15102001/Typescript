@@ -27,7 +27,10 @@ const Add = (props: AddProps) => {
     const [cate, setCate] = useState<CateType[]>([]);
     const [file, setFile] = useState<string>();
     const handleFileUpload = (e) => {
+      console.log(e.target.files[0]);
+      
         setFile(URL.createObjectURL(e.target.files[0]))
+
     }
   const {
     register,
@@ -51,8 +54,6 @@ const onSubmit: SubmitHandler<FormV> = async (product:ProductType)=> {
   try {
       console.log(product);
       const imgUrl = await upload(product.image[0])
-      console.log(imgUrl);
-      
       await add({...product, image: imgUrl});
       toastr.success('Thành Công')
     navigate('/admin/products');

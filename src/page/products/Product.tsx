@@ -7,6 +7,7 @@ import { ProductType } from '../../types/products'
 import { Link } from 'react-router-dom';
 import { list } from '../../api/products';
 import Paginate from '../../component/Pagination/Pagination'
+import DropDownCate from '../../component/DropDownCate'
 
 type Props = {}
 
@@ -46,7 +47,14 @@ const handlePage = (newPage) => {
   return (
     <div>
         <Banner/>
+        <div className="">
+        <div className="float-start">
         <Search onSubmit={handleSubmit}/> 
+        </div>
+        <div className="float-end mt-4 ">
+        <DropDownCate />
+        </div>
+        </div>
         <main>
         <div>
          <section className="py-5">

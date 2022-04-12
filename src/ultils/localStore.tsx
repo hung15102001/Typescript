@@ -16,6 +16,11 @@ export const isAuthenticate = () => {
     return a
 }
 
-export const cart = () => {
-    
-}
+// export const addCart = (proCart, next) => {
+//     let cart = []
+//     if(localStorage.getItem('cart')){
+//     cart = JSON.parse(localStorage.getItem('cart') as string)
+// }
+//     const exitPro = cart.find(item => item.id === proCart.id)
+
+// }

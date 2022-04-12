@@ -1,80 +1,80 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
 const Cart = (props: Props) => {
   return (
-   <div>
-  <h1>Shopping Cart</h1>
-  <div className="shopping-cart">
-    <div className="column-labels">
-      <label className="product-image">Image</label>
-      <label className="product-details">Product</label>
-      <label className="product-price">Price</label>
-      <label className="product-quantity">Quantity</label>
-      <label className="product-removal">Remove</label>
-      <label className="product-line-price">Total</label>
+    <div className="mt-4">
+    <h1 className="text-center fw-bold text-success">  My Cart</h1>
+ <div className="container-fluid pt-5">
+  <div className="row px-xl-5">
+    <div className="col-lg-8 table-responsive mb-5">
+    
+      <table className="table table-bordered text-center mb-0">
+        <thead className="bg-secondary text-dark">
+          <tr>
+            <th className="text-white">Products</th>
+            <th className="text-white">Price</th>
+            <th className="text-white">Quantity</th>
+            <th className="text-white">Total</th>
+            <th className="text-white">Remove</th>
+          </tr>
+        </thead>
+        <tbody className="align-middle"><tr>
+            <td className="align-middle"><img src=""  style={{width: 50}} /></td>
+            <td className="align-middle"></td>
+            <td className="align-middle">
+              <div className="input-group quantity mx-auto" style={{width: 100}}>
+                <div className="input-group-btn">
+                  {/* <button data-id="${item.id}" className="btn btn-delete btn-decrease btn-sm btn-primary btn-minus">
+                    <i className="fa fa-minus" />
+                  </button> */}
+                </div>
+                <input type="text" className="form-control form-control-sm bg-secondary text-center" value='0' />
+                <div className="input-group-btn">
+                  {/* <button  className="btn btn-delete btn-increase btn-sm btn-primary btn-plus">
+                    <i className="fa fa-plus" />
+                  </button> */}
+                </div>
+              </div>
+            </td>
+            <td id="mn" className=" align-middle"></td>
+            <td className="align-middle"><button  className="btn btn-delete btn-sm btn-primary">Remove</button></td>
+          </tr></tbody>
+      </table>
     </div>
-    <div className="product">
-      <div className="product-image">
-        <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg" />
-      </div>
-      <div className="product-details">
-        <div className="product-title">Dingo Dog Bones</div>
-        <p className="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
-      </div>
-      <div className="product-price">12.99</div>
-      <div className="product-quantity">
-        <input type="number" defaultValue={2} min={1} />
-      </div>
-      <div className="product-removal">
-        <button className="remove-product">
-          Remove
-        </button>
-      </div>
-      <div className="product-line-price">25.98</div>
-    </div>
-    <div className="product">
-      <div className="product-image">
-        <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png" />
-      </div>
-      <div className="product-details">
-        <div className="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-        <p className="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
-      </div>
-      <div className="product-price">45.99</div>
-      <div className="product-quantity">
-        <input type="number" defaultValue={1} min={1} />
-      </div>
-      <div className="product-removal">
-        <button className="remove-product">
-          Remove
-        </button>
-      </div>
-      <div className="product-line-price">45.99</div>
-    </div>
-    <div className="totals">
-      <div className="totals-item">
-        <label>Subtotal</label>
-        <div className="totals-value" id="cart-subtotal">71.97</div>
-      </div>
-      <div className="totals-item">
-        <label>Tax (5%)</label>
-        <div className="totals-value" id="cart-tax">3.60</div>
-      </div>
-      <div className="totals-item">
-        <label>Shipping</label>
-        <div className="totals-value" id="cart-shipping">15.00</div>
-      </div>
-      <div className="totals-item totals-item-total">
-        <label>Grand Total</label>
-        <div className="totals-value" id="cart-total">90.57</div>
+    <div className="col-lg-4">
+      <form className="mb-5" >
+        <div className="input-group">
+          <input type="text" className="form-control p-4" placeholder="Coupon Code" />
+          <div className="input-group-append">
+            <button className="btn btn-primary">Apply Coupon</button>
+          </div>
+        </div>
+      </form>
+      <div className="card border-secondary mb-5">
+        <div className="card-header bg-secondary border-0">
+          <h4 className="font-weight-semi-bold m-0">Cart Summary</h4>
+        </div>
+        <div className="card-body">
+          <div className="d-flex justify-content-between">
+            <h6 className="font-weight-medium">Shipping</h6>
+            <h6 className="font-weight-medium">$10</h6>
+          </div>
+        </div>
+        <div className="card-footer border-secondary bg-transparent">
+          <div className="d-flex justify-content-between mt-2">
+            <h5 className="font-weight-bold">Total</h5>
+            <h5 className="font-weight-bold"></h5>
+          </div>
+          <button className="btn-block btn-success my-3 py-3"><Link className="text-white "to={'/'}>Proceed To Checkout</Link></button>
+        </div>
       </div>
     </div>
-    <button className="checkout">Checkout</button>
   </div>
 </div>
-
+</div>
   );
 };
 

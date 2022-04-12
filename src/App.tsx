@@ -37,6 +37,7 @@ import ProductCli from "./page/products/Product";
 import About from "./page/About";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Contact from "./page/Contact";
+import CateForPro from "./component/CateForPro";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/about" element={<About />}/>
             <Route path="/contact" element={<Contact />}/>
+            <Route path="/products/category/:id" element={<CateForPro />} />
           </Route>
 
           <Route path="admin" element={<PrivateRouter> <AdminLayout /></PrivateRouter>}>
