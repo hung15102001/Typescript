@@ -3,47 +3,38 @@ import Pagination from "react-bootstrap/Pagination";
 import PageItem from "react-bootstrap/PageItem";
 import { Link } from 'react-router-dom';
 type Props = {
-    page: number,
-    url: string,
-    totalPages: number
-
+    _page: number,
+    _limit: number,
+    _totalRows: number
+    onPageChange: ()=>void
 }
 
-const Paginate = ({ page, totalPages, url }: Props) => {
-    const pagination = []
-    
-    for (let i = 1; i <= totalPages; i++) {
-        pagination.push(
-            <li >
-                <Link to={`/${url}/page/${i}`} className={`w-10 h-10 rounded-full border-2 flex items-center justify-center font-semibold mx-0.5 cursor-pointer transition ease-linear duration-200 hover:bg-[#D9A953] hover:border-[#D9A953] hover:text-white ${page === i ? "border-[#D9A953] bg-[#D9A953] text-white" : "border-gray-500 text-gray-500"}`}>{i}</Link>
-            </li>
-        )
-    }
+const Paginate = (props: Props) => {
+  
+   const {pagination, onPageChange} =    props;
+   const {_page, _limit, _totalRows} = props;
+    const totalPage = Math.ceil(_totalRows / _limit)
+
+   const handlePage = (newPage)=>{
+       if(onPageChange){
+           onPageChange(newPage)
+       }
+   }
+   
+
   return (
-    <div>
-        <ul>
-        {page > 1 && (
-                <li>
-                    <Link to={`/${url}/page/${page - 1}`} className="w-10 h-10 rounded-full border-2 flex items-center justify-center font-semibold border-gray-500 text-gray-500 mx-0.5 cursor-pointer transition ease-linear duration-200 hover:bg-[#D9A953] hover:border-[#D9A953] hover:text-white">
-                        <button>
-                            Prev
-                        </button>
-                    </Link>
-                </li>
-            )}
+    <div className="text-center">
+        <button className="btn btn-primary mx-4 mb-4"
+          disabled={_page <= 1}
+          onClick={() =>handlePage(_page - 1)}
+        >Prev</button>
 
-            {totalPages > 1 && pagination}
 
-            {page < totalPages && (
-                <li>
-                    <Link to={`/${url}/page/${page + 1}`} className="w-10 h-10 rounded-full border-2 flex items-center justify-center font-semibold border-gray-500 text-gray-500 mx-0.5 cursor-pointer transition ease-linear duration-200 hover:bg-[#D9A953] hover:border-[#D9A953] hover:text-white">
-                        <button>
-                            Next
-                        </button>
-                    </Link>
-                </li>
-            )}
-        </ul>
+        <button className="btn btn-primary mx-4 mb-4"
+        disabled={_page >= totalPage}
+        onClick={() =>handlePage(_page + 1)}
+        >Next</button>
+
     </div>
   )
 }

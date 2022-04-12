@@ -6,7 +6,7 @@ const { user, token} =  isAuthenticate();
 
 export const list = (start = 0, PAGE_SIZE = 0) => {
     let url = '/products';
-    if(PAGE_SIZE) url += `?page=${start}&limit=${PAGE_SIZE}`;
+    if(PAGE_SIZE) url += `&_start=${start}&_limit=${PAGE_SIZE}`;
     
     return instance.get(url)
 }

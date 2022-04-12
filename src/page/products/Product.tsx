@@ -6,13 +6,20 @@ import Search from '../../component/Search'
 import { ProductType } from '../../types/products'
 import { Link } from 'react-router-dom';
 import { list } from '../../api/products';
+import Paginate from '../../component/Pagination/Pagination'
 
 type Props = {}
 
 const ProductCli = (props: Props) => {
   const [products, setProducts] = useState<ProductType[]>([])
   const [filter, setFilter] = useState<ProductType[]>({
+
     title : ''
+  })
+  const [pagination, setPagination] = useState({
+    _page: 1,
+    _limit: 6,
+    _totalRows: 1
   })
   useEffect(()=>{
     const getPro = async () =>{
@@ -23,6 +30,12 @@ const ProductCli = (props: Props) => {
     }
     getPro()
 },[])
+
+const handlePage = (newPage) => {
+  console.log("New Page",newPage);
+  
+} 
+
   const handleSubmit = async (handleFilter) => {
 
     // setFilter({
@@ -47,7 +60,7 @@ const ProductCli = (props: Props) => {
        
           <div className="badge bg-dark text-white position-absolute" style={{top: '0.5rem', right: '0.5rem'}}>Sale</div>
     
-          <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+          <img className="card-img-top" src={item.image} width="100px" alt="..." />
       
           <div className="card-body p-4">
             <div className="text-center">
@@ -72,9 +85,14 @@ const ProductCli = (props: Props) => {
     </div>
   </div>
 </section>
-
+<Paginate 
+  pagination={pagination}
+  onPageChange = {handlePage}
+/>
     </div>
-        </main>
+    </main>
+  
+
     </div>
   )
 }

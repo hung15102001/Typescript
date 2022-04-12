@@ -36,6 +36,7 @@ import DetailPro from "./page/products/DetailPro";
 import ProductCli from "./page/products/Product";
 import About from "./page/About";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Contact from "./page/Contact";
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/about" element={<About />}/>
+            <Route path="/contact" element={<Contact />}/>
           </Route>
 
           <Route path="admin" element={<PrivateRouter> <AdminLayout /></PrivateRouter>}>

@@ -48,6 +48,9 @@ body{
     background-repeat: round;
     background-size:cover;
   }
+header{
+    padding:5px;
+}
 
 .img{
     padding: 0px 10px 0px 10px;
